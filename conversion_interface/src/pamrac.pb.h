@@ -48,7 +48,6 @@ class InitBlobResponse;
 class BlobRequest;
 class BlobRequest_BlobHash;
 class BlobResponse;
-class BlobResponse_NamedBlobFile;
 class BlobUpload;
 class BlobUploadResult;
 class ShareListRequest;
@@ -61,9 +60,6 @@ class ShareUpload;
 class ShareUploadResult;
 class FriendNameMap;
 class FriendNameMap_FriendNickname;
-class ConnectToNewStore;
-class NewStoreConnectResult;
-class ConnectFriendServerResult;
 
 enum PAMRACMessage_Type {
   PAMRACMessage_Type_INIT_BLOB_REQUEST = 0,
@@ -86,11 +82,7 @@ enum PAMRACMessage_Type {
   PAMRACMessage_Type_SHARE_LIST_REQUEST_NONCE = 17,
   PAMRACMessage_Type_SHARE_LIST_REQUEST = 18,
   PAMRACMessage_Type_SHARE_LIST = 19,
-  PAMRACMessage_Type_CONNECT_TO_NEW_STORE = 20,
-  PAMRACMessage_Type_NEW_STORE_CONNECT_RESULT = 21,
-  PAMRACMessage_Type_CONNECT_TO_FRIEND_SERVER = 22,
-  PAMRACMessage_Type_CONNECT_FRIEND_SERVER_RESULT = 23,
-  PAMRACMessage_Type_NOT_AUTHORIZED = 24
+  PAMRACMessage_Type_NOT_AUTHORIZED = 20
 };
 bool PAMRACMessage_Type_IsValid(int value);
 const PAMRACMessage_Type PAMRACMessage_Type_Type_MIN = PAMRACMessage_Type_INIT_BLOB_REQUEST;
@@ -181,10 +173,6 @@ class PAMRACMessage : public ::google::protobuf::Message {
   static const Type SHARE_LIST_REQUEST_NONCE = PAMRACMessage_Type_SHARE_LIST_REQUEST_NONCE;
   static const Type SHARE_LIST_REQUEST = PAMRACMessage_Type_SHARE_LIST_REQUEST;
   static const Type SHARE_LIST = PAMRACMessage_Type_SHARE_LIST;
-  static const Type CONNECT_TO_NEW_STORE = PAMRACMessage_Type_CONNECT_TO_NEW_STORE;
-  static const Type NEW_STORE_CONNECT_RESULT = PAMRACMessage_Type_NEW_STORE_CONNECT_RESULT;
-  static const Type CONNECT_TO_FRIEND_SERVER = PAMRACMessage_Type_CONNECT_TO_FRIEND_SERVER;
-  static const Type CONNECT_FRIEND_SERVER_RESULT = PAMRACMessage_Type_CONNECT_FRIEND_SERVER_RESULT;
   static const Type NOT_AUTHORIZED = PAMRACMessage_Type_NOT_AUTHORIZED;
   static inline bool Type_IsValid(int value) {
     return PAMRACMessage_Type_IsValid(value);
@@ -345,37 +333,10 @@ class PAMRACMessage : public ::google::protobuf::Message {
   inline ::pamrac::ShareList* release_share_list();
   inline void set_allocated_share_list(::pamrac::ShareList* share_list);
 
-  // optional .pamrac.ConnectToNewStore connect_to_new_store = 16;
-  inline bool has_connect_to_new_store() const;
-  inline void clear_connect_to_new_store();
-  static const int kConnectToNewStoreFieldNumber = 16;
-  inline const ::pamrac::ConnectToNewStore& connect_to_new_store() const;
-  inline ::pamrac::ConnectToNewStore* mutable_connect_to_new_store();
-  inline ::pamrac::ConnectToNewStore* release_connect_to_new_store();
-  inline void set_allocated_connect_to_new_store(::pamrac::ConnectToNewStore* connect_to_new_store);
-
-  // optional .pamrac.NewStoreConnectResult new_store_connect_result = 17;
-  inline bool has_new_store_connect_result() const;
-  inline void clear_new_store_connect_result();
-  static const int kNewStoreConnectResultFieldNumber = 17;
-  inline const ::pamrac::NewStoreConnectResult& new_store_connect_result() const;
-  inline ::pamrac::NewStoreConnectResult* mutable_new_store_connect_result();
-  inline ::pamrac::NewStoreConnectResult* release_new_store_connect_result();
-  inline void set_allocated_new_store_connect_result(::pamrac::NewStoreConnectResult* new_store_connect_result);
-
-  // optional .pamrac.ConnectFriendServerResult connect_friend_server_result = 18;
-  inline bool has_connect_friend_server_result() const;
-  inline void clear_connect_friend_server_result();
-  static const int kConnectFriendServerResultFieldNumber = 18;
-  inline const ::pamrac::ConnectFriendServerResult& connect_friend_server_result() const;
-  inline ::pamrac::ConnectFriendServerResult* mutable_connect_friend_server_result();
-  inline ::pamrac::ConnectFriendServerResult* release_connect_friend_server_result();
-  inline void set_allocated_connect_friend_server_result(::pamrac::ConnectFriendServerResult* connect_friend_server_result);
-
-  // optional bytes client_pubkey = 19;
+  // optional bytes client_pubkey = 16;
   inline bool has_client_pubkey() const;
   inline void clear_client_pubkey();
-  static const int kClientPubkeyFieldNumber = 19;
+  static const int kClientPubkeyFieldNumber = 16;
   inline const ::std::string& client_pubkey() const;
   inline void set_client_pubkey(const ::std::string& value);
   inline void set_client_pubkey(const char* value);
@@ -416,12 +377,6 @@ class PAMRACMessage : public ::google::protobuf::Message {
   inline void clear_has_share_list_request();
   inline void set_has_share_list();
   inline void clear_has_share_list();
-  inline void set_has_connect_to_new_store();
-  inline void clear_has_connect_to_new_store();
-  inline void set_has_new_store_connect_result();
-  inline void clear_has_new_store_connect_result();
-  inline void set_has_connect_friend_server_result();
-  inline void clear_has_connect_friend_server_result();
   inline void set_has_client_pubkey();
   inline void clear_has_client_pubkey();
 
@@ -443,9 +398,6 @@ class PAMRACMessage : public ::google::protobuf::Message {
   ::pamrac::KeyShare* key_share_;
   ::pamrac::ShareListRequest* share_list_request_;
   ::pamrac::ShareList* share_list_;
-  ::pamrac::ConnectToNewStore* connect_to_new_store_;
-  ::pamrac::NewStoreConnectResult* new_store_connect_result_;
-  ::pamrac::ConnectFriendServerResult* connect_friend_server_result_;
   ::std::string* client_pubkey_;
   int type_;
   friend void  protobuf_AddDesc_pamrac_2eproto();
@@ -1722,102 +1674,6 @@ class BlobRequest : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
-class BlobResponse_NamedBlobFile : public ::google::protobuf::Message {
- public:
-  BlobResponse_NamedBlobFile();
-  virtual ~BlobResponse_NamedBlobFile();
-
-  BlobResponse_NamedBlobFile(const BlobResponse_NamedBlobFile& from);
-
-  inline BlobResponse_NamedBlobFile& operator=(const BlobResponse_NamedBlobFile& from) {
-    CopyFrom(from);
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _unknown_fields_;
-  }
-
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return &_unknown_fields_;
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor();
-  static const BlobResponse_NamedBlobFile& default_instance();
-
-  void Swap(BlobResponse_NamedBlobFile* other);
-
-  // implements Message ----------------------------------------------
-
-  BlobResponse_NamedBlobFile* New() const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const BlobResponse_NamedBlobFile& from);
-  void MergeFrom(const BlobResponse_NamedBlobFile& from);
-  void Clear();
-  bool IsInitialized() const;
-
-  int ByteSize() const;
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input);
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
-  int GetCachedSize() const { return _cached_size_; }
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const;
-  public:
-  ::google::protobuf::Metadata GetMetadata() const;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // required string name = 1;
-  inline bool has_name() const;
-  inline void clear_name();
-  static const int kNameFieldNumber = 1;
-  inline const ::std::string& name() const;
-  inline void set_name(const ::std::string& value);
-  inline void set_name(const char* value);
-  inline void set_name(const char* value, size_t size);
-  inline ::std::string* mutable_name();
-  inline ::std::string* release_name();
-  inline void set_allocated_name(::std::string* name);
-
-  // required .pamrac.BlobFile blob = 2;
-  inline bool has_blob() const;
-  inline void clear_blob();
-  static const int kBlobFieldNumber = 2;
-  inline const ::pamrac::BlobFile& blob() const;
-  inline ::pamrac::BlobFile* mutable_blob();
-  inline ::pamrac::BlobFile* release_blob();
-  inline void set_allocated_blob(::pamrac::BlobFile* blob);
-
-  // @@protoc_insertion_point(class_scope:pamrac.BlobResponse.NamedBlobFile)
- private:
-  inline void set_has_name();
-  inline void clear_has_name();
-  inline void set_has_blob();
-  inline void clear_has_blob();
-
-  ::google::protobuf::UnknownFieldSet _unknown_fields_;
-
-  ::google::protobuf::uint32 _has_bits_[1];
-  mutable int _cached_size_;
-  ::std::string* name_;
-  ::pamrac::BlobFile* blob_;
-  friend void  protobuf_AddDesc_pamrac_2eproto();
-  friend void protobuf_AssignDesc_pamrac_2eproto();
-  friend void protobuf_ShutdownFile_pamrac_2eproto();
-
-  void InitAsDefaultInstance();
-  static BlobResponse_NamedBlobFile* default_instance_;
-};
-// -------------------------------------------------------------------
-
 class BlobResponse : public ::google::protobuf::Message {
  public:
   BlobResponse();
@@ -1869,20 +1725,18 @@ class BlobResponse : public ::google::protobuf::Message {
 
   // nested types ----------------------------------------------------
 
-  typedef BlobResponse_NamedBlobFile NamedBlobFile;
-
   // accessors -------------------------------------------------------
 
-  // repeated .pamrac.BlobResponse.NamedBlobFile new_blobs = 1;
+  // repeated .pamrac.BlobFile new_blobs = 1;
   inline int new_blobs_size() const;
   inline void clear_new_blobs();
   static const int kNewBlobsFieldNumber = 1;
-  inline const ::pamrac::BlobResponse_NamedBlobFile& new_blobs(int index) const;
-  inline ::pamrac::BlobResponse_NamedBlobFile* mutable_new_blobs(int index);
-  inline ::pamrac::BlobResponse_NamedBlobFile* add_new_blobs();
-  inline const ::google::protobuf::RepeatedPtrField< ::pamrac::BlobResponse_NamedBlobFile >&
+  inline const ::pamrac::BlobFile& new_blobs(int index) const;
+  inline ::pamrac::BlobFile* mutable_new_blobs(int index);
+  inline ::pamrac::BlobFile* add_new_blobs();
+  inline const ::google::protobuf::RepeatedPtrField< ::pamrac::BlobFile >&
       new_blobs() const;
-  inline ::google::protobuf::RepeatedPtrField< ::pamrac::BlobResponse_NamedBlobFile >*
+  inline ::google::protobuf::RepeatedPtrField< ::pamrac::BlobFile >*
       mutable_new_blobs();
 
   // @@protoc_insertion_point(class_scope:pamrac.BlobResponse)
@@ -1892,7 +1746,7 @@ class BlobResponse : public ::google::protobuf::Message {
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::pamrac::BlobResponse_NamedBlobFile > new_blobs_;
+  ::google::protobuf::RepeatedPtrField< ::pamrac::BlobFile > new_blobs_;
   friend void  protobuf_AddDesc_pamrac_2eproto();
   friend void protobuf_AssignDesc_pamrac_2eproto();
   friend void protobuf_ShutdownFile_pamrac_2eproto();
@@ -1988,7 +1842,7 @@ class BlobUpload : public ::google::protobuf::Message {
   inline ::std::string* release_nonce();
   inline void set_allocated_nonce(::std::string* nonce);
 
-  // optional bytes signature = 4;
+  // required bytes signature = 4;
   inline bool has_signature() const;
   inline void clear_signature();
   static const int kSignatureFieldNumber = 4;
@@ -2204,7 +2058,7 @@ class ShareListRequest : public ::google::protobuf::Message {
   inline ::std::string* release_nonce();
   inline void set_allocated_nonce(::std::string* nonce);
 
-  // optional bytes signature = 3;
+  // required bytes signature = 3;
   inline bool has_signature() const;
   inline void clear_signature();
   static const int kSignatureFieldNumber = 3;
@@ -2431,7 +2285,7 @@ class ShareList : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedPtrField< ::pamrac::ShareList_ShareRecipient >*
       mutable_recipients();
 
-  // optional bytes signature = 4;
+  // required bytes signature = 4;
   inline bool has_signature() const;
   inline void clear_signature();
   static const int kSignatureFieldNumber = 4;
@@ -2657,7 +2511,7 @@ class ShareRequest : public ::google::protobuf::Message {
   inline ::std::string* release_nonce();
   inline void set_allocated_nonce(::std::string* nonce);
 
-  // optional bytes signature = 3;
+  // required bytes signature = 3;
   inline bool has_signature() const;
   inline void clear_signature();
   static const int kSignatureFieldNumber = 3;
@@ -2925,7 +2779,7 @@ class ShareUpload : public ::google::protobuf::Message {
   inline ::std::string* release_nonce();
   inline void set_allocated_nonce(::std::string* nonce);
 
-  // optional bytes signature = 5;
+  // required bytes signature = 5;
   inline bool has_signature() const;
   inline void clear_signature();
   static const int kSignatureFieldNumber = 5;
@@ -3146,34 +3000,10 @@ class FriendNameMap_FriendNickname : public ::google::protobuf::Message {
   inline ::std::string* release_friend_fingerprint();
   inline void set_allocated_friend_fingerprint(::std::string* friend_fingerprint);
 
-  // required bytes friend_pubkey = 3;
-  inline bool has_friend_pubkey() const;
-  inline void clear_friend_pubkey();
-  static const int kFriendPubkeyFieldNumber = 3;
-  inline const ::std::string& friend_pubkey() const;
-  inline void set_friend_pubkey(const ::std::string& value);
-  inline void set_friend_pubkey(const char* value);
-  inline void set_friend_pubkey(const void* value, size_t size);
-  inline ::std::string* mutable_friend_pubkey();
-  inline ::std::string* release_friend_pubkey();
-  inline void set_allocated_friend_pubkey(::std::string* friend_pubkey);
-
-  // required bytes friend_server_cert = 4;
-  inline bool has_friend_server_cert() const;
-  inline void clear_friend_server_cert();
-  static const int kFriendServerCertFieldNumber = 4;
-  inline const ::std::string& friend_server_cert() const;
-  inline void set_friend_server_cert(const ::std::string& value);
-  inline void set_friend_server_cert(const char* value);
-  inline void set_friend_server_cert(const void* value, size_t size);
-  inline ::std::string* mutable_friend_server_cert();
-  inline ::std::string* release_friend_server_cert();
-  inline void set_allocated_friend_server_cert(::std::string* friend_server_cert);
-
-  // required string server_address = 5;
+  // required string server_address = 3;
   inline bool has_server_address() const;
   inline void clear_server_address();
-  static const int kServerAddressFieldNumber = 5;
+  static const int kServerAddressFieldNumber = 3;
   inline const ::std::string& server_address() const;
   inline void set_server_address(const ::std::string& value);
   inline void set_server_address(const char* value);
@@ -3188,10 +3018,6 @@ class FriendNameMap_FriendNickname : public ::google::protobuf::Message {
   inline void clear_has_name();
   inline void set_has_friend_fingerprint();
   inline void clear_has_friend_fingerprint();
-  inline void set_has_friend_pubkey();
-  inline void clear_has_friend_pubkey();
-  inline void set_has_friend_server_cert();
-  inline void clear_has_friend_server_cert();
   inline void set_has_server_address();
   inline void clear_has_server_address();
 
@@ -3201,8 +3027,6 @@ class FriendNameMap_FriendNickname : public ::google::protobuf::Message {
   mutable int _cached_size_;
   ::std::string* name_;
   ::std::string* friend_fingerprint_;
-  ::std::string* friend_pubkey_;
-  ::std::string* friend_server_cert_;
   ::std::string* server_address_;
   friend void  protobuf_AddDesc_pamrac_2eproto();
   friend void protobuf_AssignDesc_pamrac_2eproto();
@@ -3287,7 +3111,7 @@ class FriendNameMap : public ::google::protobuf::Message {
   inline ::google::protobuf::int64 timestamp() const;
   inline void set_timestamp(::google::protobuf::int64 value);
 
-  // optional bytes signature = 3;
+  // required bytes signature = 3;
   inline bool has_signature() const;
   inline void clear_signature();
   static const int kSignatureFieldNumber = 3;
@@ -3319,340 +3143,6 @@ class FriendNameMap : public ::google::protobuf::Message {
 
   void InitAsDefaultInstance();
   static FriendNameMap* default_instance_;
-};
-// -------------------------------------------------------------------
-
-class ConnectToNewStore : public ::google::protobuf::Message {
- public:
-  ConnectToNewStore();
-  virtual ~ConnectToNewStore();
-
-  ConnectToNewStore(const ConnectToNewStore& from);
-
-  inline ConnectToNewStore& operator=(const ConnectToNewStore& from) {
-    CopyFrom(from);
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _unknown_fields_;
-  }
-
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return &_unknown_fields_;
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor();
-  static const ConnectToNewStore& default_instance();
-
-  void Swap(ConnectToNewStore* other);
-
-  // implements Message ----------------------------------------------
-
-  ConnectToNewStore* New() const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const ConnectToNewStore& from);
-  void MergeFrom(const ConnectToNewStore& from);
-  void Clear();
-  bool IsInitialized() const;
-
-  int ByteSize() const;
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input);
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
-  int GetCachedSize() const { return _cached_size_; }
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const;
-  public:
-  ::google::protobuf::Metadata GetMetadata() const;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // required string passcode = 1;
-  inline bool has_passcode() const;
-  inline void clear_passcode();
-  static const int kPasscodeFieldNumber = 1;
-  inline const ::std::string& passcode() const;
-  inline void set_passcode(const ::std::string& value);
-  inline void set_passcode(const char* value);
-  inline void set_passcode(const char* value, size_t size);
-  inline ::std::string* mutable_passcode();
-  inline ::std::string* release_passcode();
-  inline void set_allocated_passcode(::std::string* passcode);
-
-  // required bytes public_key = 2;
-  inline bool has_public_key() const;
-  inline void clear_public_key();
-  static const int kPublicKeyFieldNumber = 2;
-  inline const ::std::string& public_key() const;
-  inline void set_public_key(const ::std::string& value);
-  inline void set_public_key(const char* value);
-  inline void set_public_key(const void* value, size_t size);
-  inline ::std::string* mutable_public_key();
-  inline ::std::string* release_public_key();
-  inline void set_allocated_public_key(::std::string* public_key);
-
-  // required bytes download_secret = 3;
-  inline bool has_download_secret() const;
-  inline void clear_download_secret();
-  static const int kDownloadSecretFieldNumber = 3;
-  inline const ::std::string& download_secret() const;
-  inline void set_download_secret(const ::std::string& value);
-  inline void set_download_secret(const char* value);
-  inline void set_download_secret(const void* value, size_t size);
-  inline ::std::string* mutable_download_secret();
-  inline ::std::string* release_download_secret();
-  inline void set_allocated_download_secret(::std::string* download_secret);
-
-  // optional string nickname = 4;
-  inline bool has_nickname() const;
-  inline void clear_nickname();
-  static const int kNicknameFieldNumber = 4;
-  inline const ::std::string& nickname() const;
-  inline void set_nickname(const ::std::string& value);
-  inline void set_nickname(const char* value);
-  inline void set_nickname(const char* value, size_t size);
-  inline ::std::string* mutable_nickname();
-  inline ::std::string* release_nickname();
-  inline void set_allocated_nickname(::std::string* nickname);
-
-  // optional .pamrac.MasterKeyPasswordedFile encrypted_master = 5;
-  inline bool has_encrypted_master() const;
-  inline void clear_encrypted_master();
-  static const int kEncryptedMasterFieldNumber = 5;
-  inline const ::pamrac::MasterKeyPasswordedFile& encrypted_master() const;
-  inline ::pamrac::MasterKeyPasswordedFile* mutable_encrypted_master();
-  inline ::pamrac::MasterKeyPasswordedFile* release_encrypted_master();
-  inline void set_allocated_encrypted_master(::pamrac::MasterKeyPasswordedFile* encrypted_master);
-
-  // @@protoc_insertion_point(class_scope:pamrac.ConnectToNewStore)
- private:
-  inline void set_has_passcode();
-  inline void clear_has_passcode();
-  inline void set_has_public_key();
-  inline void clear_has_public_key();
-  inline void set_has_download_secret();
-  inline void clear_has_download_secret();
-  inline void set_has_nickname();
-  inline void clear_has_nickname();
-  inline void set_has_encrypted_master();
-  inline void clear_has_encrypted_master();
-
-  ::google::protobuf::UnknownFieldSet _unknown_fields_;
-
-  ::google::protobuf::uint32 _has_bits_[1];
-  mutable int _cached_size_;
-  ::std::string* passcode_;
-  ::std::string* public_key_;
-  ::std::string* download_secret_;
-  ::std::string* nickname_;
-  ::pamrac::MasterKeyPasswordedFile* encrypted_master_;
-  friend void  protobuf_AddDesc_pamrac_2eproto();
-  friend void protobuf_AssignDesc_pamrac_2eproto();
-  friend void protobuf_ShutdownFile_pamrac_2eproto();
-
-  void InitAsDefaultInstance();
-  static ConnectToNewStore* default_instance_;
-};
-// -------------------------------------------------------------------
-
-class NewStoreConnectResult : public ::google::protobuf::Message {
- public:
-  NewStoreConnectResult();
-  virtual ~NewStoreConnectResult();
-
-  NewStoreConnectResult(const NewStoreConnectResult& from);
-
-  inline NewStoreConnectResult& operator=(const NewStoreConnectResult& from) {
-    CopyFrom(from);
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _unknown_fields_;
-  }
-
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return &_unknown_fields_;
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor();
-  static const NewStoreConnectResult& default_instance();
-
-  void Swap(NewStoreConnectResult* other);
-
-  // implements Message ----------------------------------------------
-
-  NewStoreConnectResult* New() const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const NewStoreConnectResult& from);
-  void MergeFrom(const NewStoreConnectResult& from);
-  void Clear();
-  bool IsInitialized() const;
-
-  int ByteSize() const;
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input);
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
-  int GetCachedSize() const { return _cached_size_; }
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const;
-  public:
-  ::google::protobuf::Metadata GetMetadata() const;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // required bool success = 1;
-  inline bool has_success() const;
-  inline void clear_success();
-  static const int kSuccessFieldNumber = 1;
-  inline bool success() const;
-  inline void set_success(bool value);
-
-  // @@protoc_insertion_point(class_scope:pamrac.NewStoreConnectResult)
- private:
-  inline void set_has_success();
-  inline void clear_has_success();
-
-  ::google::protobuf::UnknownFieldSet _unknown_fields_;
-
-  ::google::protobuf::uint32 _has_bits_[1];
-  mutable int _cached_size_;
-  bool success_;
-  friend void  protobuf_AddDesc_pamrac_2eproto();
-  friend void protobuf_AssignDesc_pamrac_2eproto();
-  friend void protobuf_ShutdownFile_pamrac_2eproto();
-
-  void InitAsDefaultInstance();
-  static NewStoreConnectResult* default_instance_;
-};
-// -------------------------------------------------------------------
-
-class ConnectFriendServerResult : public ::google::protobuf::Message {
- public:
-  ConnectFriendServerResult();
-  virtual ~ConnectFriendServerResult();
-
-  ConnectFriendServerResult(const ConnectFriendServerResult& from);
-
-  inline ConnectFriendServerResult& operator=(const ConnectFriendServerResult& from) {
-    CopyFrom(from);
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _unknown_fields_;
-  }
-
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return &_unknown_fields_;
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor();
-  static const ConnectFriendServerResult& default_instance();
-
-  void Swap(ConnectFriendServerResult* other);
-
-  // implements Message ----------------------------------------------
-
-  ConnectFriendServerResult* New() const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const ConnectFriendServerResult& from);
-  void MergeFrom(const ConnectFriendServerResult& from);
-  void Clear();
-  bool IsInitialized() const;
-
-  int ByteSize() const;
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input);
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
-  int GetCachedSize() const { return _cached_size_; }
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const;
-  public:
-  ::google::protobuf::Metadata GetMetadata() const;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // required bytes user_public_key = 1;
-  inline bool has_user_public_key() const;
-  inline void clear_user_public_key();
-  static const int kUserPublicKeyFieldNumber = 1;
-  inline const ::std::string& user_public_key() const;
-  inline void set_user_public_key(const ::std::string& value);
-  inline void set_user_public_key(const char* value);
-  inline void set_user_public_key(const void* value, size_t size);
-  inline ::std::string* mutable_user_public_key();
-  inline ::std::string* release_user_public_key();
-  inline void set_allocated_user_public_key(::std::string* user_public_key);
-
-  // required bytes server_cert = 2;
-  inline bool has_server_cert() const;
-  inline void clear_server_cert();
-  static const int kServerCertFieldNumber = 2;
-  inline const ::std::string& server_cert() const;
-  inline void set_server_cert(const ::std::string& value);
-  inline void set_server_cert(const char* value);
-  inline void set_server_cert(const void* value, size_t size);
-  inline ::std::string* mutable_server_cert();
-  inline ::std::string* release_server_cert();
-  inline void set_allocated_server_cert(::std::string* server_cert);
-
-  // required bytes sig_of_cert = 3;
-  inline bool has_sig_of_cert() const;
-  inline void clear_sig_of_cert();
-  static const int kSigOfCertFieldNumber = 3;
-  inline const ::std::string& sig_of_cert() const;
-  inline void set_sig_of_cert(const ::std::string& value);
-  inline void set_sig_of_cert(const char* value);
-  inline void set_sig_of_cert(const void* value, size_t size);
-  inline ::std::string* mutable_sig_of_cert();
-  inline ::std::string* release_sig_of_cert();
-  inline void set_allocated_sig_of_cert(::std::string* sig_of_cert);
-
-  // @@protoc_insertion_point(class_scope:pamrac.ConnectFriendServerResult)
- private:
-  inline void set_has_user_public_key();
-  inline void clear_has_user_public_key();
-  inline void set_has_server_cert();
-  inline void clear_has_server_cert();
-  inline void set_has_sig_of_cert();
-  inline void clear_has_sig_of_cert();
-
-  ::google::protobuf::UnknownFieldSet _unknown_fields_;
-
-  ::google::protobuf::uint32 _has_bits_[1];
-  mutable int _cached_size_;
-  ::std::string* user_public_key_;
-  ::std::string* server_cert_;
-  ::std::string* sig_of_cert_;
-  friend void  protobuf_AddDesc_pamrac_2eproto();
-  friend void protobuf_AssignDesc_pamrac_2eproto();
-  friend void protobuf_ShutdownFile_pamrac_2eproto();
-
-  void InitAsDefaultInstance();
-  static ConnectFriendServerResult* default_instance_;
 };
 // ===================================================================
 
@@ -4295,138 +3785,15 @@ inline void PAMRACMessage::set_allocated_share_list(::pamrac::ShareList* share_l
   // @@protoc_insertion_point(field_set_allocated:pamrac.PAMRACMessage.share_list)
 }
 
-// optional .pamrac.ConnectToNewStore connect_to_new_store = 16;
-inline bool PAMRACMessage::has_connect_to_new_store() const {
+// optional bytes client_pubkey = 16;
+inline bool PAMRACMessage::has_client_pubkey() const {
   return (_has_bits_[0] & 0x00008000u) != 0;
 }
-inline void PAMRACMessage::set_has_connect_to_new_store() {
+inline void PAMRACMessage::set_has_client_pubkey() {
   _has_bits_[0] |= 0x00008000u;
 }
-inline void PAMRACMessage::clear_has_connect_to_new_store() {
-  _has_bits_[0] &= ~0x00008000u;
-}
-inline void PAMRACMessage::clear_connect_to_new_store() {
-  if (connect_to_new_store_ != NULL) connect_to_new_store_->::pamrac::ConnectToNewStore::Clear();
-  clear_has_connect_to_new_store();
-}
-inline const ::pamrac::ConnectToNewStore& PAMRACMessage::connect_to_new_store() const {
-  // @@protoc_insertion_point(field_get:pamrac.PAMRACMessage.connect_to_new_store)
-  return connect_to_new_store_ != NULL ? *connect_to_new_store_ : *default_instance_->connect_to_new_store_;
-}
-inline ::pamrac::ConnectToNewStore* PAMRACMessage::mutable_connect_to_new_store() {
-  set_has_connect_to_new_store();
-  if (connect_to_new_store_ == NULL) connect_to_new_store_ = new ::pamrac::ConnectToNewStore;
-  // @@protoc_insertion_point(field_mutable:pamrac.PAMRACMessage.connect_to_new_store)
-  return connect_to_new_store_;
-}
-inline ::pamrac::ConnectToNewStore* PAMRACMessage::release_connect_to_new_store() {
-  clear_has_connect_to_new_store();
-  ::pamrac::ConnectToNewStore* temp = connect_to_new_store_;
-  connect_to_new_store_ = NULL;
-  return temp;
-}
-inline void PAMRACMessage::set_allocated_connect_to_new_store(::pamrac::ConnectToNewStore* connect_to_new_store) {
-  delete connect_to_new_store_;
-  connect_to_new_store_ = connect_to_new_store;
-  if (connect_to_new_store) {
-    set_has_connect_to_new_store();
-  } else {
-    clear_has_connect_to_new_store();
-  }
-  // @@protoc_insertion_point(field_set_allocated:pamrac.PAMRACMessage.connect_to_new_store)
-}
-
-// optional .pamrac.NewStoreConnectResult new_store_connect_result = 17;
-inline bool PAMRACMessage::has_new_store_connect_result() const {
-  return (_has_bits_[0] & 0x00010000u) != 0;
-}
-inline void PAMRACMessage::set_has_new_store_connect_result() {
-  _has_bits_[0] |= 0x00010000u;
-}
-inline void PAMRACMessage::clear_has_new_store_connect_result() {
-  _has_bits_[0] &= ~0x00010000u;
-}
-inline void PAMRACMessage::clear_new_store_connect_result() {
-  if (new_store_connect_result_ != NULL) new_store_connect_result_->::pamrac::NewStoreConnectResult::Clear();
-  clear_has_new_store_connect_result();
-}
-inline const ::pamrac::NewStoreConnectResult& PAMRACMessage::new_store_connect_result() const {
-  // @@protoc_insertion_point(field_get:pamrac.PAMRACMessage.new_store_connect_result)
-  return new_store_connect_result_ != NULL ? *new_store_connect_result_ : *default_instance_->new_store_connect_result_;
-}
-inline ::pamrac::NewStoreConnectResult* PAMRACMessage::mutable_new_store_connect_result() {
-  set_has_new_store_connect_result();
-  if (new_store_connect_result_ == NULL) new_store_connect_result_ = new ::pamrac::NewStoreConnectResult;
-  // @@protoc_insertion_point(field_mutable:pamrac.PAMRACMessage.new_store_connect_result)
-  return new_store_connect_result_;
-}
-inline ::pamrac::NewStoreConnectResult* PAMRACMessage::release_new_store_connect_result() {
-  clear_has_new_store_connect_result();
-  ::pamrac::NewStoreConnectResult* temp = new_store_connect_result_;
-  new_store_connect_result_ = NULL;
-  return temp;
-}
-inline void PAMRACMessage::set_allocated_new_store_connect_result(::pamrac::NewStoreConnectResult* new_store_connect_result) {
-  delete new_store_connect_result_;
-  new_store_connect_result_ = new_store_connect_result;
-  if (new_store_connect_result) {
-    set_has_new_store_connect_result();
-  } else {
-    clear_has_new_store_connect_result();
-  }
-  // @@protoc_insertion_point(field_set_allocated:pamrac.PAMRACMessage.new_store_connect_result)
-}
-
-// optional .pamrac.ConnectFriendServerResult connect_friend_server_result = 18;
-inline bool PAMRACMessage::has_connect_friend_server_result() const {
-  return (_has_bits_[0] & 0x00020000u) != 0;
-}
-inline void PAMRACMessage::set_has_connect_friend_server_result() {
-  _has_bits_[0] |= 0x00020000u;
-}
-inline void PAMRACMessage::clear_has_connect_friend_server_result() {
-  _has_bits_[0] &= ~0x00020000u;
-}
-inline void PAMRACMessage::clear_connect_friend_server_result() {
-  if (connect_friend_server_result_ != NULL) connect_friend_server_result_->::pamrac::ConnectFriendServerResult::Clear();
-  clear_has_connect_friend_server_result();
-}
-inline const ::pamrac::ConnectFriendServerResult& PAMRACMessage::connect_friend_server_result() const {
-  // @@protoc_insertion_point(field_get:pamrac.PAMRACMessage.connect_friend_server_result)
-  return connect_friend_server_result_ != NULL ? *connect_friend_server_result_ : *default_instance_->connect_friend_server_result_;
-}
-inline ::pamrac::ConnectFriendServerResult* PAMRACMessage::mutable_connect_friend_server_result() {
-  set_has_connect_friend_server_result();
-  if (connect_friend_server_result_ == NULL) connect_friend_server_result_ = new ::pamrac::ConnectFriendServerResult;
-  // @@protoc_insertion_point(field_mutable:pamrac.PAMRACMessage.connect_friend_server_result)
-  return connect_friend_server_result_;
-}
-inline ::pamrac::ConnectFriendServerResult* PAMRACMessage::release_connect_friend_server_result() {
-  clear_has_connect_friend_server_result();
-  ::pamrac::ConnectFriendServerResult* temp = connect_friend_server_result_;
-  connect_friend_server_result_ = NULL;
-  return temp;
-}
-inline void PAMRACMessage::set_allocated_connect_friend_server_result(::pamrac::ConnectFriendServerResult* connect_friend_server_result) {
-  delete connect_friend_server_result_;
-  connect_friend_server_result_ = connect_friend_server_result;
-  if (connect_friend_server_result) {
-    set_has_connect_friend_server_result();
-  } else {
-    clear_has_connect_friend_server_result();
-  }
-  // @@protoc_insertion_point(field_set_allocated:pamrac.PAMRACMessage.connect_friend_server_result)
-}
-
-// optional bytes client_pubkey = 19;
-inline bool PAMRACMessage::has_client_pubkey() const {
-  return (_has_bits_[0] & 0x00040000u) != 0;
-}
-inline void PAMRACMessage::set_has_client_pubkey() {
-  _has_bits_[0] |= 0x00040000u;
-}
 inline void PAMRACMessage::clear_has_client_pubkey() {
-  _has_bits_[0] &= ~0x00040000u;
+  _has_bits_[0] &= ~0x00008000u;
 }
 inline void PAMRACMessage::clear_client_pubkey() {
   if (client_pubkey_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
@@ -6554,154 +5921,33 @@ inline void BlobRequest::set_allocated_proof_nonce(::std::string* proof_nonce) {
 
 // -------------------------------------------------------------------
 
-// BlobResponse_NamedBlobFile
-
-// required string name = 1;
-inline bool BlobResponse_NamedBlobFile::has_name() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void BlobResponse_NamedBlobFile::set_has_name() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void BlobResponse_NamedBlobFile::clear_has_name() {
-  _has_bits_[0] &= ~0x00000001u;
-}
-inline void BlobResponse_NamedBlobFile::clear_name() {
-  if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    name_->clear();
-  }
-  clear_has_name();
-}
-inline const ::std::string& BlobResponse_NamedBlobFile::name() const {
-  // @@protoc_insertion_point(field_get:pamrac.BlobResponse.NamedBlobFile.name)
-  return *name_;
-}
-inline void BlobResponse_NamedBlobFile::set_name(const ::std::string& value) {
-  set_has_name();
-  if (name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    name_ = new ::std::string;
-  }
-  name_->assign(value);
-  // @@protoc_insertion_point(field_set:pamrac.BlobResponse.NamedBlobFile.name)
-}
-inline void BlobResponse_NamedBlobFile::set_name(const char* value) {
-  set_has_name();
-  if (name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    name_ = new ::std::string;
-  }
-  name_->assign(value);
-  // @@protoc_insertion_point(field_set_char:pamrac.BlobResponse.NamedBlobFile.name)
-}
-inline void BlobResponse_NamedBlobFile::set_name(const char* value, size_t size) {
-  set_has_name();
-  if (name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    name_ = new ::std::string;
-  }
-  name_->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:pamrac.BlobResponse.NamedBlobFile.name)
-}
-inline ::std::string* BlobResponse_NamedBlobFile::mutable_name() {
-  set_has_name();
-  if (name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    name_ = new ::std::string;
-  }
-  // @@protoc_insertion_point(field_mutable:pamrac.BlobResponse.NamedBlobFile.name)
-  return name_;
-}
-inline ::std::string* BlobResponse_NamedBlobFile::release_name() {
-  clear_has_name();
-  if (name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    return NULL;
-  } else {
-    ::std::string* temp = name_;
-    name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-    return temp;
-  }
-}
-inline void BlobResponse_NamedBlobFile::set_allocated_name(::std::string* name) {
-  if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete name_;
-  }
-  if (name) {
-    set_has_name();
-    name_ = name;
-  } else {
-    clear_has_name();
-    name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  }
-  // @@protoc_insertion_point(field_set_allocated:pamrac.BlobResponse.NamedBlobFile.name)
-}
-
-// required .pamrac.BlobFile blob = 2;
-inline bool BlobResponse_NamedBlobFile::has_blob() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-inline void BlobResponse_NamedBlobFile::set_has_blob() {
-  _has_bits_[0] |= 0x00000002u;
-}
-inline void BlobResponse_NamedBlobFile::clear_has_blob() {
-  _has_bits_[0] &= ~0x00000002u;
-}
-inline void BlobResponse_NamedBlobFile::clear_blob() {
-  if (blob_ != NULL) blob_->::pamrac::BlobFile::Clear();
-  clear_has_blob();
-}
-inline const ::pamrac::BlobFile& BlobResponse_NamedBlobFile::blob() const {
-  // @@protoc_insertion_point(field_get:pamrac.BlobResponse.NamedBlobFile.blob)
-  return blob_ != NULL ? *blob_ : *default_instance_->blob_;
-}
-inline ::pamrac::BlobFile* BlobResponse_NamedBlobFile::mutable_blob() {
-  set_has_blob();
-  if (blob_ == NULL) blob_ = new ::pamrac::BlobFile;
-  // @@protoc_insertion_point(field_mutable:pamrac.BlobResponse.NamedBlobFile.blob)
-  return blob_;
-}
-inline ::pamrac::BlobFile* BlobResponse_NamedBlobFile::release_blob() {
-  clear_has_blob();
-  ::pamrac::BlobFile* temp = blob_;
-  blob_ = NULL;
-  return temp;
-}
-inline void BlobResponse_NamedBlobFile::set_allocated_blob(::pamrac::BlobFile* blob) {
-  delete blob_;
-  blob_ = blob;
-  if (blob) {
-    set_has_blob();
-  } else {
-    clear_has_blob();
-  }
-  // @@protoc_insertion_point(field_set_allocated:pamrac.BlobResponse.NamedBlobFile.blob)
-}
-
-// -------------------------------------------------------------------
-
 // BlobResponse
 
-// repeated .pamrac.BlobResponse.NamedBlobFile new_blobs = 1;
+// repeated .pamrac.BlobFile new_blobs = 1;
 inline int BlobResponse::new_blobs_size() const {
   return new_blobs_.size();
 }
 inline void BlobResponse::clear_new_blobs() {
   new_blobs_.Clear();
 }
-inline const ::pamrac::BlobResponse_NamedBlobFile& BlobResponse::new_blobs(int index) const {
+inline const ::pamrac::BlobFile& BlobResponse::new_blobs(int index) const {
   // @@protoc_insertion_point(field_get:pamrac.BlobResponse.new_blobs)
   return new_blobs_.Get(index);
 }
-inline ::pamrac::BlobResponse_NamedBlobFile* BlobResponse::mutable_new_blobs(int index) {
+inline ::pamrac::BlobFile* BlobResponse::mutable_new_blobs(int index) {
   // @@protoc_insertion_point(field_mutable:pamrac.BlobResponse.new_blobs)
   return new_blobs_.Mutable(index);
 }
-inline ::pamrac::BlobResponse_NamedBlobFile* BlobResponse::add_new_blobs() {
+inline ::pamrac::BlobFile* BlobResponse::add_new_blobs() {
   // @@protoc_insertion_point(field_add:pamrac.BlobResponse.new_blobs)
   return new_blobs_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::pamrac::BlobResponse_NamedBlobFile >&
+inline const ::google::protobuf::RepeatedPtrField< ::pamrac::BlobFile >&
 BlobResponse::new_blobs() const {
   // @@protoc_insertion_point(field_list:pamrac.BlobResponse.new_blobs)
   return new_blobs_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::pamrac::BlobResponse_NamedBlobFile >*
+inline ::google::protobuf::RepeatedPtrField< ::pamrac::BlobFile >*
 BlobResponse::mutable_new_blobs() {
   // @@protoc_insertion_point(field_mutable_list:pamrac.BlobResponse.new_blobs)
   return &new_blobs_;
@@ -6904,7 +6150,7 @@ inline void BlobUpload::set_allocated_nonce(::std::string* nonce) {
   // @@protoc_insertion_point(field_set_allocated:pamrac.BlobUpload.nonce)
 }
 
-// optional bytes signature = 4;
+// required bytes signature = 4;
 inline bool BlobUpload::has_signature() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }
@@ -7212,7 +6458,7 @@ inline void ShareListRequest::set_allocated_nonce(::std::string* nonce) {
   // @@protoc_insertion_point(field_set_allocated:pamrac.ShareListRequest.nonce)
 }
 
-// optional bytes signature = 3;
+// required bytes signature = 3;
 inline bool ShareListRequest::has_signature() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -7550,7 +6796,7 @@ ShareList::mutable_recipients() {
   return &recipients_;
 }
 
-// optional bytes signature = 4;
+// required bytes signature = 4;
 inline bool ShareList::has_signature() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }
@@ -7979,7 +7225,7 @@ inline void ShareRequest::set_allocated_nonce(::std::string* nonce) {
   // @@protoc_insertion_point(field_set_allocated:pamrac.ShareRequest.nonce)
 }
 
-// optional bytes signature = 3;
+// required bytes signature = 3;
 inline bool ShareRequest::has_signature() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -8498,7 +7744,7 @@ inline void ShareUpload::set_allocated_nonce(::std::string* nonce) {
   // @@protoc_insertion_point(field_set_allocated:pamrac.ShareUpload.nonce)
 }
 
-// optional bytes signature = 5;
+// required bytes signature = 5;
 inline bool ShareUpload::has_signature() const {
   return (_has_bits_[0] & 0x00000010u) != 0;
 }
@@ -8818,167 +8064,15 @@ inline void FriendNameMap_FriendNickname::set_allocated_friend_fingerprint(::std
   // @@protoc_insertion_point(field_set_allocated:pamrac.FriendNameMap.FriendNickname.friend_fingerprint)
 }
 
-// required bytes friend_pubkey = 3;
-inline bool FriendNameMap_FriendNickname::has_friend_pubkey() const {
+// required string server_address = 3;
+inline bool FriendNameMap_FriendNickname::has_server_address() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
-inline void FriendNameMap_FriendNickname::set_has_friend_pubkey() {
+inline void FriendNameMap_FriendNickname::set_has_server_address() {
   _has_bits_[0] |= 0x00000004u;
 }
-inline void FriendNameMap_FriendNickname::clear_has_friend_pubkey() {
-  _has_bits_[0] &= ~0x00000004u;
-}
-inline void FriendNameMap_FriendNickname::clear_friend_pubkey() {
-  if (friend_pubkey_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    friend_pubkey_->clear();
-  }
-  clear_has_friend_pubkey();
-}
-inline const ::std::string& FriendNameMap_FriendNickname::friend_pubkey() const {
-  // @@protoc_insertion_point(field_get:pamrac.FriendNameMap.FriendNickname.friend_pubkey)
-  return *friend_pubkey_;
-}
-inline void FriendNameMap_FriendNickname::set_friend_pubkey(const ::std::string& value) {
-  set_has_friend_pubkey();
-  if (friend_pubkey_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    friend_pubkey_ = new ::std::string;
-  }
-  friend_pubkey_->assign(value);
-  // @@protoc_insertion_point(field_set:pamrac.FriendNameMap.FriendNickname.friend_pubkey)
-}
-inline void FriendNameMap_FriendNickname::set_friend_pubkey(const char* value) {
-  set_has_friend_pubkey();
-  if (friend_pubkey_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    friend_pubkey_ = new ::std::string;
-  }
-  friend_pubkey_->assign(value);
-  // @@protoc_insertion_point(field_set_char:pamrac.FriendNameMap.FriendNickname.friend_pubkey)
-}
-inline void FriendNameMap_FriendNickname::set_friend_pubkey(const void* value, size_t size) {
-  set_has_friend_pubkey();
-  if (friend_pubkey_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    friend_pubkey_ = new ::std::string;
-  }
-  friend_pubkey_->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:pamrac.FriendNameMap.FriendNickname.friend_pubkey)
-}
-inline ::std::string* FriendNameMap_FriendNickname::mutable_friend_pubkey() {
-  set_has_friend_pubkey();
-  if (friend_pubkey_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    friend_pubkey_ = new ::std::string;
-  }
-  // @@protoc_insertion_point(field_mutable:pamrac.FriendNameMap.FriendNickname.friend_pubkey)
-  return friend_pubkey_;
-}
-inline ::std::string* FriendNameMap_FriendNickname::release_friend_pubkey() {
-  clear_has_friend_pubkey();
-  if (friend_pubkey_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    return NULL;
-  } else {
-    ::std::string* temp = friend_pubkey_;
-    friend_pubkey_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-    return temp;
-  }
-}
-inline void FriendNameMap_FriendNickname::set_allocated_friend_pubkey(::std::string* friend_pubkey) {
-  if (friend_pubkey_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete friend_pubkey_;
-  }
-  if (friend_pubkey) {
-    set_has_friend_pubkey();
-    friend_pubkey_ = friend_pubkey;
-  } else {
-    clear_has_friend_pubkey();
-    friend_pubkey_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  }
-  // @@protoc_insertion_point(field_set_allocated:pamrac.FriendNameMap.FriendNickname.friend_pubkey)
-}
-
-// required bytes friend_server_cert = 4;
-inline bool FriendNameMap_FriendNickname::has_friend_server_cert() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
-}
-inline void FriendNameMap_FriendNickname::set_has_friend_server_cert() {
-  _has_bits_[0] |= 0x00000008u;
-}
-inline void FriendNameMap_FriendNickname::clear_has_friend_server_cert() {
-  _has_bits_[0] &= ~0x00000008u;
-}
-inline void FriendNameMap_FriendNickname::clear_friend_server_cert() {
-  if (friend_server_cert_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    friend_server_cert_->clear();
-  }
-  clear_has_friend_server_cert();
-}
-inline const ::std::string& FriendNameMap_FriendNickname::friend_server_cert() const {
-  // @@protoc_insertion_point(field_get:pamrac.FriendNameMap.FriendNickname.friend_server_cert)
-  return *friend_server_cert_;
-}
-inline void FriendNameMap_FriendNickname::set_friend_server_cert(const ::std::string& value) {
-  set_has_friend_server_cert();
-  if (friend_server_cert_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    friend_server_cert_ = new ::std::string;
-  }
-  friend_server_cert_->assign(value);
-  // @@protoc_insertion_point(field_set:pamrac.FriendNameMap.FriendNickname.friend_server_cert)
-}
-inline void FriendNameMap_FriendNickname::set_friend_server_cert(const char* value) {
-  set_has_friend_server_cert();
-  if (friend_server_cert_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    friend_server_cert_ = new ::std::string;
-  }
-  friend_server_cert_->assign(value);
-  // @@protoc_insertion_point(field_set_char:pamrac.FriendNameMap.FriendNickname.friend_server_cert)
-}
-inline void FriendNameMap_FriendNickname::set_friend_server_cert(const void* value, size_t size) {
-  set_has_friend_server_cert();
-  if (friend_server_cert_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    friend_server_cert_ = new ::std::string;
-  }
-  friend_server_cert_->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:pamrac.FriendNameMap.FriendNickname.friend_server_cert)
-}
-inline ::std::string* FriendNameMap_FriendNickname::mutable_friend_server_cert() {
-  set_has_friend_server_cert();
-  if (friend_server_cert_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    friend_server_cert_ = new ::std::string;
-  }
-  // @@protoc_insertion_point(field_mutable:pamrac.FriendNameMap.FriendNickname.friend_server_cert)
-  return friend_server_cert_;
-}
-inline ::std::string* FriendNameMap_FriendNickname::release_friend_server_cert() {
-  clear_has_friend_server_cert();
-  if (friend_server_cert_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    return NULL;
-  } else {
-    ::std::string* temp = friend_server_cert_;
-    friend_server_cert_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-    return temp;
-  }
-}
-inline void FriendNameMap_FriendNickname::set_allocated_friend_server_cert(::std::string* friend_server_cert) {
-  if (friend_server_cert_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete friend_server_cert_;
-  }
-  if (friend_server_cert) {
-    set_has_friend_server_cert();
-    friend_server_cert_ = friend_server_cert;
-  } else {
-    clear_has_friend_server_cert();
-    friend_server_cert_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  }
-  // @@protoc_insertion_point(field_set_allocated:pamrac.FriendNameMap.FriendNickname.friend_server_cert)
-}
-
-// required string server_address = 5;
-inline bool FriendNameMap_FriendNickname::has_server_address() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
-}
-inline void FriendNameMap_FriendNickname::set_has_server_address() {
-  _has_bits_[0] |= 0x00000010u;
-}
 inline void FriendNameMap_FriendNickname::clear_has_server_address() {
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline void FriendNameMap_FriendNickname::clear_server_address() {
   if (server_address_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
@@ -9104,7 +8198,7 @@ inline void FriendNameMap::set_timestamp(::google::protobuf::int64 value) {
   // @@protoc_insertion_point(field_set:pamrac.FriendNameMap.timestamp)
 }
 
-// optional bytes signature = 3;
+// required bytes signature = 3;
 inline bool FriendNameMap::has_signature() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -9178,615 +8272,6 @@ inline void FriendNameMap::set_allocated_signature(::std::string* signature) {
     signature_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:pamrac.FriendNameMap.signature)
-}
-
-// -------------------------------------------------------------------
-
-// ConnectToNewStore
-
-// required string passcode = 1;
-inline bool ConnectToNewStore::has_passcode() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void ConnectToNewStore::set_has_passcode() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void ConnectToNewStore::clear_has_passcode() {
-  _has_bits_[0] &= ~0x00000001u;
-}
-inline void ConnectToNewStore::clear_passcode() {
-  if (passcode_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    passcode_->clear();
-  }
-  clear_has_passcode();
-}
-inline const ::std::string& ConnectToNewStore::passcode() const {
-  // @@protoc_insertion_point(field_get:pamrac.ConnectToNewStore.passcode)
-  return *passcode_;
-}
-inline void ConnectToNewStore::set_passcode(const ::std::string& value) {
-  set_has_passcode();
-  if (passcode_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    passcode_ = new ::std::string;
-  }
-  passcode_->assign(value);
-  // @@protoc_insertion_point(field_set:pamrac.ConnectToNewStore.passcode)
-}
-inline void ConnectToNewStore::set_passcode(const char* value) {
-  set_has_passcode();
-  if (passcode_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    passcode_ = new ::std::string;
-  }
-  passcode_->assign(value);
-  // @@protoc_insertion_point(field_set_char:pamrac.ConnectToNewStore.passcode)
-}
-inline void ConnectToNewStore::set_passcode(const char* value, size_t size) {
-  set_has_passcode();
-  if (passcode_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    passcode_ = new ::std::string;
-  }
-  passcode_->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:pamrac.ConnectToNewStore.passcode)
-}
-inline ::std::string* ConnectToNewStore::mutable_passcode() {
-  set_has_passcode();
-  if (passcode_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    passcode_ = new ::std::string;
-  }
-  // @@protoc_insertion_point(field_mutable:pamrac.ConnectToNewStore.passcode)
-  return passcode_;
-}
-inline ::std::string* ConnectToNewStore::release_passcode() {
-  clear_has_passcode();
-  if (passcode_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    return NULL;
-  } else {
-    ::std::string* temp = passcode_;
-    passcode_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-    return temp;
-  }
-}
-inline void ConnectToNewStore::set_allocated_passcode(::std::string* passcode) {
-  if (passcode_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete passcode_;
-  }
-  if (passcode) {
-    set_has_passcode();
-    passcode_ = passcode;
-  } else {
-    clear_has_passcode();
-    passcode_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  }
-  // @@protoc_insertion_point(field_set_allocated:pamrac.ConnectToNewStore.passcode)
-}
-
-// required bytes public_key = 2;
-inline bool ConnectToNewStore::has_public_key() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-inline void ConnectToNewStore::set_has_public_key() {
-  _has_bits_[0] |= 0x00000002u;
-}
-inline void ConnectToNewStore::clear_has_public_key() {
-  _has_bits_[0] &= ~0x00000002u;
-}
-inline void ConnectToNewStore::clear_public_key() {
-  if (public_key_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    public_key_->clear();
-  }
-  clear_has_public_key();
-}
-inline const ::std::string& ConnectToNewStore::public_key() const {
-  // @@protoc_insertion_point(field_get:pamrac.ConnectToNewStore.public_key)
-  return *public_key_;
-}
-inline void ConnectToNewStore::set_public_key(const ::std::string& value) {
-  set_has_public_key();
-  if (public_key_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    public_key_ = new ::std::string;
-  }
-  public_key_->assign(value);
-  // @@protoc_insertion_point(field_set:pamrac.ConnectToNewStore.public_key)
-}
-inline void ConnectToNewStore::set_public_key(const char* value) {
-  set_has_public_key();
-  if (public_key_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    public_key_ = new ::std::string;
-  }
-  public_key_->assign(value);
-  // @@protoc_insertion_point(field_set_char:pamrac.ConnectToNewStore.public_key)
-}
-inline void ConnectToNewStore::set_public_key(const void* value, size_t size) {
-  set_has_public_key();
-  if (public_key_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    public_key_ = new ::std::string;
-  }
-  public_key_->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:pamrac.ConnectToNewStore.public_key)
-}
-inline ::std::string* ConnectToNewStore::mutable_public_key() {
-  set_has_public_key();
-  if (public_key_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    public_key_ = new ::std::string;
-  }
-  // @@protoc_insertion_point(field_mutable:pamrac.ConnectToNewStore.public_key)
-  return public_key_;
-}
-inline ::std::string* ConnectToNewStore::release_public_key() {
-  clear_has_public_key();
-  if (public_key_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    return NULL;
-  } else {
-    ::std::string* temp = public_key_;
-    public_key_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-    return temp;
-  }
-}
-inline void ConnectToNewStore::set_allocated_public_key(::std::string* public_key) {
-  if (public_key_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete public_key_;
-  }
-  if (public_key) {
-    set_has_public_key();
-    public_key_ = public_key;
-  } else {
-    clear_has_public_key();
-    public_key_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  }
-  // @@protoc_insertion_point(field_set_allocated:pamrac.ConnectToNewStore.public_key)
-}
-
-// required bytes download_secret = 3;
-inline bool ConnectToNewStore::has_download_secret() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
-}
-inline void ConnectToNewStore::set_has_download_secret() {
-  _has_bits_[0] |= 0x00000004u;
-}
-inline void ConnectToNewStore::clear_has_download_secret() {
-  _has_bits_[0] &= ~0x00000004u;
-}
-inline void ConnectToNewStore::clear_download_secret() {
-  if (download_secret_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    download_secret_->clear();
-  }
-  clear_has_download_secret();
-}
-inline const ::std::string& ConnectToNewStore::download_secret() const {
-  // @@protoc_insertion_point(field_get:pamrac.ConnectToNewStore.download_secret)
-  return *download_secret_;
-}
-inline void ConnectToNewStore::set_download_secret(const ::std::string& value) {
-  set_has_download_secret();
-  if (download_secret_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    download_secret_ = new ::std::string;
-  }
-  download_secret_->assign(value);
-  // @@protoc_insertion_point(field_set:pamrac.ConnectToNewStore.download_secret)
-}
-inline void ConnectToNewStore::set_download_secret(const char* value) {
-  set_has_download_secret();
-  if (download_secret_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    download_secret_ = new ::std::string;
-  }
-  download_secret_->assign(value);
-  // @@protoc_insertion_point(field_set_char:pamrac.ConnectToNewStore.download_secret)
-}
-inline void ConnectToNewStore::set_download_secret(const void* value, size_t size) {
-  set_has_download_secret();
-  if (download_secret_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    download_secret_ = new ::std::string;
-  }
-  download_secret_->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:pamrac.ConnectToNewStore.download_secret)
-}
-inline ::std::string* ConnectToNewStore::mutable_download_secret() {
-  set_has_download_secret();
-  if (download_secret_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    download_secret_ = new ::std::string;
-  }
-  // @@protoc_insertion_point(field_mutable:pamrac.ConnectToNewStore.download_secret)
-  return download_secret_;
-}
-inline ::std::string* ConnectToNewStore::release_download_secret() {
-  clear_has_download_secret();
-  if (download_secret_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    return NULL;
-  } else {
-    ::std::string* temp = download_secret_;
-    download_secret_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-    return temp;
-  }
-}
-inline void ConnectToNewStore::set_allocated_download_secret(::std::string* download_secret) {
-  if (download_secret_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete download_secret_;
-  }
-  if (download_secret) {
-    set_has_download_secret();
-    download_secret_ = download_secret;
-  } else {
-    clear_has_download_secret();
-    download_secret_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  }
-  // @@protoc_insertion_point(field_set_allocated:pamrac.ConnectToNewStore.download_secret)
-}
-
-// optional string nickname = 4;
-inline bool ConnectToNewStore::has_nickname() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
-}
-inline void ConnectToNewStore::set_has_nickname() {
-  _has_bits_[0] |= 0x00000008u;
-}
-inline void ConnectToNewStore::clear_has_nickname() {
-  _has_bits_[0] &= ~0x00000008u;
-}
-inline void ConnectToNewStore::clear_nickname() {
-  if (nickname_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    nickname_->clear();
-  }
-  clear_has_nickname();
-}
-inline const ::std::string& ConnectToNewStore::nickname() const {
-  // @@protoc_insertion_point(field_get:pamrac.ConnectToNewStore.nickname)
-  return *nickname_;
-}
-inline void ConnectToNewStore::set_nickname(const ::std::string& value) {
-  set_has_nickname();
-  if (nickname_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    nickname_ = new ::std::string;
-  }
-  nickname_->assign(value);
-  // @@protoc_insertion_point(field_set:pamrac.ConnectToNewStore.nickname)
-}
-inline void ConnectToNewStore::set_nickname(const char* value) {
-  set_has_nickname();
-  if (nickname_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    nickname_ = new ::std::string;
-  }
-  nickname_->assign(value);
-  // @@protoc_insertion_point(field_set_char:pamrac.ConnectToNewStore.nickname)
-}
-inline void ConnectToNewStore::set_nickname(const char* value, size_t size) {
-  set_has_nickname();
-  if (nickname_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    nickname_ = new ::std::string;
-  }
-  nickname_->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:pamrac.ConnectToNewStore.nickname)
-}
-inline ::std::string* ConnectToNewStore::mutable_nickname() {
-  set_has_nickname();
-  if (nickname_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    nickname_ = new ::std::string;
-  }
-  // @@protoc_insertion_point(field_mutable:pamrac.ConnectToNewStore.nickname)
-  return nickname_;
-}
-inline ::std::string* ConnectToNewStore::release_nickname() {
-  clear_has_nickname();
-  if (nickname_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    return NULL;
-  } else {
-    ::std::string* temp = nickname_;
-    nickname_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-    return temp;
-  }
-}
-inline void ConnectToNewStore::set_allocated_nickname(::std::string* nickname) {
-  if (nickname_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete nickname_;
-  }
-  if (nickname) {
-    set_has_nickname();
-    nickname_ = nickname;
-  } else {
-    clear_has_nickname();
-    nickname_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  }
-  // @@protoc_insertion_point(field_set_allocated:pamrac.ConnectToNewStore.nickname)
-}
-
-// optional .pamrac.MasterKeyPasswordedFile encrypted_master = 5;
-inline bool ConnectToNewStore::has_encrypted_master() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
-}
-inline void ConnectToNewStore::set_has_encrypted_master() {
-  _has_bits_[0] |= 0x00000010u;
-}
-inline void ConnectToNewStore::clear_has_encrypted_master() {
-  _has_bits_[0] &= ~0x00000010u;
-}
-inline void ConnectToNewStore::clear_encrypted_master() {
-  if (encrypted_master_ != NULL) encrypted_master_->::pamrac::MasterKeyPasswordedFile::Clear();
-  clear_has_encrypted_master();
-}
-inline const ::pamrac::MasterKeyPasswordedFile& ConnectToNewStore::encrypted_master() const {
-  // @@protoc_insertion_point(field_get:pamrac.ConnectToNewStore.encrypted_master)
-  return encrypted_master_ != NULL ? *encrypted_master_ : *default_instance_->encrypted_master_;
-}
-inline ::pamrac::MasterKeyPasswordedFile* ConnectToNewStore::mutable_encrypted_master() {
-  set_has_encrypted_master();
-  if (encrypted_master_ == NULL) encrypted_master_ = new ::pamrac::MasterKeyPasswordedFile;
-  // @@protoc_insertion_point(field_mutable:pamrac.ConnectToNewStore.encrypted_master)
-  return encrypted_master_;
-}
-inline ::pamrac::MasterKeyPasswordedFile* ConnectToNewStore::release_encrypted_master() {
-  clear_has_encrypted_master();
-  ::pamrac::MasterKeyPasswordedFile* temp = encrypted_master_;
-  encrypted_master_ = NULL;
-  return temp;
-}
-inline void ConnectToNewStore::set_allocated_encrypted_master(::pamrac::MasterKeyPasswordedFile* encrypted_master) {
-  delete encrypted_master_;
-  encrypted_master_ = encrypted_master;
-  if (encrypted_master) {
-    set_has_encrypted_master();
-  } else {
-    clear_has_encrypted_master();
-  }
-  // @@protoc_insertion_point(field_set_allocated:pamrac.ConnectToNewStore.encrypted_master)
-}
-
-// -------------------------------------------------------------------
-
-// NewStoreConnectResult
-
-// required bool success = 1;
-inline bool NewStoreConnectResult::has_success() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void NewStoreConnectResult::set_has_success() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void NewStoreConnectResult::clear_has_success() {
-  _has_bits_[0] &= ~0x00000001u;
-}
-inline void NewStoreConnectResult::clear_success() {
-  success_ = false;
-  clear_has_success();
-}
-inline bool NewStoreConnectResult::success() const {
-  // @@protoc_insertion_point(field_get:pamrac.NewStoreConnectResult.success)
-  return success_;
-}
-inline void NewStoreConnectResult::set_success(bool value) {
-  set_has_success();
-  success_ = value;
-  // @@protoc_insertion_point(field_set:pamrac.NewStoreConnectResult.success)
-}
-
-// -------------------------------------------------------------------
-
-// ConnectFriendServerResult
-
-// required bytes user_public_key = 1;
-inline bool ConnectFriendServerResult::has_user_public_key() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void ConnectFriendServerResult::set_has_user_public_key() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void ConnectFriendServerResult::clear_has_user_public_key() {
-  _has_bits_[0] &= ~0x00000001u;
-}
-inline void ConnectFriendServerResult::clear_user_public_key() {
-  if (user_public_key_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    user_public_key_->clear();
-  }
-  clear_has_user_public_key();
-}
-inline const ::std::string& ConnectFriendServerResult::user_public_key() const {
-  // @@protoc_insertion_point(field_get:pamrac.ConnectFriendServerResult.user_public_key)
-  return *user_public_key_;
-}
-inline void ConnectFriendServerResult::set_user_public_key(const ::std::string& value) {
-  set_has_user_public_key();
-  if (user_public_key_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    user_public_key_ = new ::std::string;
-  }
-  user_public_key_->assign(value);
-  // @@protoc_insertion_point(field_set:pamrac.ConnectFriendServerResult.user_public_key)
-}
-inline void ConnectFriendServerResult::set_user_public_key(const char* value) {
-  set_has_user_public_key();
-  if (user_public_key_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    user_public_key_ = new ::std::string;
-  }
-  user_public_key_->assign(value);
-  // @@protoc_insertion_point(field_set_char:pamrac.ConnectFriendServerResult.user_public_key)
-}
-inline void ConnectFriendServerResult::set_user_public_key(const void* value, size_t size) {
-  set_has_user_public_key();
-  if (user_public_key_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    user_public_key_ = new ::std::string;
-  }
-  user_public_key_->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:pamrac.ConnectFriendServerResult.user_public_key)
-}
-inline ::std::string* ConnectFriendServerResult::mutable_user_public_key() {
-  set_has_user_public_key();
-  if (user_public_key_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    user_public_key_ = new ::std::string;
-  }
-  // @@protoc_insertion_point(field_mutable:pamrac.ConnectFriendServerResult.user_public_key)
-  return user_public_key_;
-}
-inline ::std::string* ConnectFriendServerResult::release_user_public_key() {
-  clear_has_user_public_key();
-  if (user_public_key_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    return NULL;
-  } else {
-    ::std::string* temp = user_public_key_;
-    user_public_key_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-    return temp;
-  }
-}
-inline void ConnectFriendServerResult::set_allocated_user_public_key(::std::string* user_public_key) {
-  if (user_public_key_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete user_public_key_;
-  }
-  if (user_public_key) {
-    set_has_user_public_key();
-    user_public_key_ = user_public_key;
-  } else {
-    clear_has_user_public_key();
-    user_public_key_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  }
-  // @@protoc_insertion_point(field_set_allocated:pamrac.ConnectFriendServerResult.user_public_key)
-}
-
-// required bytes server_cert = 2;
-inline bool ConnectFriendServerResult::has_server_cert() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-inline void ConnectFriendServerResult::set_has_server_cert() {
-  _has_bits_[0] |= 0x00000002u;
-}
-inline void ConnectFriendServerResult::clear_has_server_cert() {
-  _has_bits_[0] &= ~0x00000002u;
-}
-inline void ConnectFriendServerResult::clear_server_cert() {
-  if (server_cert_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    server_cert_->clear();
-  }
-  clear_has_server_cert();
-}
-inline const ::std::string& ConnectFriendServerResult::server_cert() const {
-  // @@protoc_insertion_point(field_get:pamrac.ConnectFriendServerResult.server_cert)
-  return *server_cert_;
-}
-inline void ConnectFriendServerResult::set_server_cert(const ::std::string& value) {
-  set_has_server_cert();
-  if (server_cert_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    server_cert_ = new ::std::string;
-  }
-  server_cert_->assign(value);
-  // @@protoc_insertion_point(field_set:pamrac.ConnectFriendServerResult.server_cert)
-}
-inline void ConnectFriendServerResult::set_server_cert(const char* value) {
-  set_has_server_cert();
-  if (server_cert_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    server_cert_ = new ::std::string;
-  }
-  server_cert_->assign(value);
-  // @@protoc_insertion_point(field_set_char:pamrac.ConnectFriendServerResult.server_cert)
-}
-inline void ConnectFriendServerResult::set_server_cert(const void* value, size_t size) {
-  set_has_server_cert();
-  if (server_cert_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    server_cert_ = new ::std::string;
-  }
-  server_cert_->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:pamrac.ConnectFriendServerResult.server_cert)
-}
-inline ::std::string* ConnectFriendServerResult::mutable_server_cert() {
-  set_has_server_cert();
-  if (server_cert_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    server_cert_ = new ::std::string;
-  }
-  // @@protoc_insertion_point(field_mutable:pamrac.ConnectFriendServerResult.server_cert)
-  return server_cert_;
-}
-inline ::std::string* ConnectFriendServerResult::release_server_cert() {
-  clear_has_server_cert();
-  if (server_cert_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    return NULL;
-  } else {
-    ::std::string* temp = server_cert_;
-    server_cert_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-    return temp;
-  }
-}
-inline void ConnectFriendServerResult::set_allocated_server_cert(::std::string* server_cert) {
-  if (server_cert_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete server_cert_;
-  }
-  if (server_cert) {
-    set_has_server_cert();
-    server_cert_ = server_cert;
-  } else {
-    clear_has_server_cert();
-    server_cert_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  }
-  // @@protoc_insertion_point(field_set_allocated:pamrac.ConnectFriendServerResult.server_cert)
-}
-
-// required bytes sig_of_cert = 3;
-inline bool ConnectFriendServerResult::has_sig_of_cert() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
-}
-inline void ConnectFriendServerResult::set_has_sig_of_cert() {
-  _has_bits_[0] |= 0x00000004u;
-}
-inline void ConnectFriendServerResult::clear_has_sig_of_cert() {
-  _has_bits_[0] &= ~0x00000004u;
-}
-inline void ConnectFriendServerResult::clear_sig_of_cert() {
-  if (sig_of_cert_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    sig_of_cert_->clear();
-  }
-  clear_has_sig_of_cert();
-}
-inline const ::std::string& ConnectFriendServerResult::sig_of_cert() const {
-  // @@protoc_insertion_point(field_get:pamrac.ConnectFriendServerResult.sig_of_cert)
-  return *sig_of_cert_;
-}
-inline void ConnectFriendServerResult::set_sig_of_cert(const ::std::string& value) {
-  set_has_sig_of_cert();
-  if (sig_of_cert_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    sig_of_cert_ = new ::std::string;
-  }
-  sig_of_cert_->assign(value);
-  // @@protoc_insertion_point(field_set:pamrac.ConnectFriendServerResult.sig_of_cert)
-}
-inline void ConnectFriendServerResult::set_sig_of_cert(const char* value) {
-  set_has_sig_of_cert();
-  if (sig_of_cert_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    sig_of_cert_ = new ::std::string;
-  }
-  sig_of_cert_->assign(value);
-  // @@protoc_insertion_point(field_set_char:pamrac.ConnectFriendServerResult.sig_of_cert)
-}
-inline void ConnectFriendServerResult::set_sig_of_cert(const void* value, size_t size) {
-  set_has_sig_of_cert();
-  if (sig_of_cert_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    sig_of_cert_ = new ::std::string;
-  }
-  sig_of_cert_->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:pamrac.ConnectFriendServerResult.sig_of_cert)
-}
-inline ::std::string* ConnectFriendServerResult::mutable_sig_of_cert() {
-  set_has_sig_of_cert();
-  if (sig_of_cert_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    sig_of_cert_ = new ::std::string;
-  }
-  // @@protoc_insertion_point(field_mutable:pamrac.ConnectFriendServerResult.sig_of_cert)
-  return sig_of_cert_;
-}
-inline ::std::string* ConnectFriendServerResult::release_sig_of_cert() {
-  clear_has_sig_of_cert();
-  if (sig_of_cert_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    return NULL;
-  } else {
-    ::std::string* temp = sig_of_cert_;
-    sig_of_cert_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-    return temp;
-  }
-}
-inline void ConnectFriendServerResult::set_allocated_sig_of_cert(::std::string* sig_of_cert) {
-  if (sig_of_cert_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete sig_of_cert_;
-  }
-  if (sig_of_cert) {
-    set_has_sig_of_cert();
-    sig_of_cert_ = sig_of_cert;
-  } else {
-    clear_has_sig_of_cert();
-    sig_of_cert_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  }
-  // @@protoc_insertion_point(field_set_allocated:pamrac.ConnectFriendServerResult.sig_of_cert)
 }
 
 

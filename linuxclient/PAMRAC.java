@@ -525,6 +525,9 @@ public final class PAMRAC
 		pubkeyWriter.write(ourPublicKey.getEncoded());
 		pubkeyWriter.close();
 		
+		System.out.println("Fingerprint of generated public key: "+base64FprintOfPubkey(ByteString.copyFrom(ourPublicKey.getEncoded())));
+		
+		ownPublicFingerprint = fprintOfPubkey(ByteString.copyFrom(ourPublicKey.getEncoded()));
 		
 		crownJewels = 
 		PAMRACProto.InnerPassworded.newBuilder()
@@ -592,6 +595,8 @@ public final class PAMRAC
 		pubkeyReader.close();
 		ourPublicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(rawIn));
 
+		ownPublicFingerprint = fprintOfPubkey(ByteString.copyFrom(ourPublicKey.getEncoded()));
+		
 		return true;
 	}
 
@@ -631,7 +636,7 @@ public final class PAMRAC
 
 	//Try decrypting the specified blob, to be loaded into currentSite. If there is no file with
 	//the expected hashed name, try getting a blobs update from the server. If that doesn't get you
-	//the expected file, then give up.
+	//the expected file, then create an empty one.
 	public static void setCurrentSite(String siteName) throws Exception
 	{
 		if(crownJewels == null)
@@ -639,9 +644,9 @@ public final class PAMRAC
 
 		String hashedSiteName = hashSitename(siteName, crownJewels.getFilenamesalt().toByteArray());
 
-		FileInputStream blobReader;
 		try
 		{
+			FileInputStream blobReader;
 			blobReader = new FileInputStream(hashedSiteName);
 			PAMRACProto.BlobFile blobFile = PAMRACProto.BlobFile.parseFrom(blobReader);
 			setCurrentSiteFromData(blobFile);
@@ -649,14 +654,22 @@ public final class PAMRAC
 		}
 		catch(FileNotFoundException e)
 		{
-			ServerDownload.retrieveBlobsFromServer();
+			downloadBlobs();
 
-			//if the file 'hashedSiteName' STILL does not exist, give up
-			FileInputStream blobReader2 = new FileInputStream(hashedSiteName);
-			//let openFileInput()'s FileNotFoundException propagate; we expected that file to exist!
-			PAMRACProto.BlobFile blobFile = PAMRACProto.BlobFile.parseFrom(blobReader2);
-			setCurrentSiteFromData(blobFile);
-			blobReader2.close();
+			//if the file 'hashedSiteName' STILL does not exist, create a new empty blob
+			try
+			{
+				FileInputStream blobReader2 = new FileInputStream(hashedSiteName);
+				//let openFileInput()'s FileNotFoundException propagate; we expected that file to exist!
+				PAMRACProto.BlobFile blobFile = PAMRACProto.BlobFile.parseFrom(blobReader2);
+				setCurrentSiteFromData(blobFile);
+				blobReader2.close();
+			}
+			catch(FileNotFoundException e2)
+			{
+				currentSite = PAMRACProto.InnerBlob.newBuilder().setFilename(siteName).build();
+				currentSiteVersion = 1;
+			}
 		}
 	}
 
@@ -824,7 +837,7 @@ public final class PAMRAC
 								.build();
 	}
 	
-	private class KeyValuePair
+	public static class KeyValuePair
 	{
 		public String name;
 		public String value;
@@ -1311,6 +1324,10 @@ public final class PAMRAC
 		return combiner.reconstruct(shares);
 	}
 	
+	public static void uploadShareToOther(String originatorNick, String newEncryptToNick) throws Exception
+	{
+		uploadShareToOther(getFriendFPFromNick(originatorNick), getFriendFPFromNick(newEncryptToNick));
+	}
 	
 	//We are owner, and (until now) encrypted_to. We want to reencrypt, and upload the result
 	//to the server of the new encrypted_to person. (So, that server will receive a share whose

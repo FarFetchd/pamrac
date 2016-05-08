@@ -206,6 +206,7 @@ int main(int argc, char** argv)
 	bool from_pamrac = (strcmp(argv[1], "frompamrac") == 0);
 	
 	string the_PASSWORD;
+	cout << "Input master password: ";
 	inputHiddenString(&the_PASSWORD);
 	
 	PAMRACConversionInterface pamrac;
@@ -216,9 +217,9 @@ int main(int argc, char** argv)
 	if(!pamrac.loadPAMRACDirectory(string(argv[3])))
 	{
 		cerr << "Error: failed to load a PAMRAC store from" << argv[3] << ". If no other error messages were printed "
-			<< "indicating that something else is wrong, then that directory is probably just not initialized as a PAMRAC store. "
-			<< "Please use the PAMRAC server to initialize it." << endl;
-		return 1;
+			<< "indicating that something else is wrong, then that directory is probably just not initialized as a PAMRAC store. Will initialize our own." << endl;
+		pamrac.initPAMRACDirectory(string(argv[3]));
+		//TODO? return 1;
 	}
 	
 	if(from_pamrac)

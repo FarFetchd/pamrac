@@ -69,7 +69,7 @@ addBlobFileToResponseIfChanged(BlobResponse* our_response_msg,
 	
 	if(their_hashes.find(filename_not_path) == their_hashes.end())
 	{
-		NamedBlobFile named_blob_to_add;
+		BlobResponse_NamedBlobFile named_blob_to_add;
 		BlobFile inner_blob;
 		if(parseBlobFile(&inner_blob, store_path+"/blobs/"+filename_not_path))
 		{
@@ -86,7 +86,7 @@ addBlobFileToResponseIfChanged(BlobResponse* our_response_msg,
 		return;
 	if(cur_their_hash != cur_our_hash)
 	{
-		NamedBlobFile named_blob_to_add;
+		BlobResponse_NamedBlobFile named_blob_to_add;
 		BlobFile inner_blob;
 		if(parseBlobFile(&inner_blob, store_path+"/blobs/"+filename_not_path))
 		{

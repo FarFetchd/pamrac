@@ -325,7 +325,7 @@ loadMasterKeyPassworded()
 	
 	aes_context AESenc;
 	aes_setkey_enc(&AESenc, inner_key, AES_KEYLEN_BYTES*8);
-	aes_crypt_cbc(&AESenc, AES_ENCRYPT, mkpf.inner_ciphertext().size(), temp_init_vec,
+	aes_crypt_cbc(&AESenc, AES_DECRYPT, mkpf.inner_ciphertext().size(), temp_init_vec,
 			    (const uint8_t*)mkpf.inner_ciphertext().c_str(), inner_plaintext);
 	
 	

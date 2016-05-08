@@ -38,6 +38,7 @@ public:
 	//Goes into this directory expecting blobs/, masterkey_passworded, etc to be present.
 	//Uses PASSWORD to open everything up, and populate the sites unordered_map.
 	bool loadPAMRACDirectory(std::string base_dir_path);
+	bool initPAMRACDirectory(std::string base_dir_path);
 	
 	//Returns the names of all of the sites that currently have values stored for them. Any one of these
 	//can be used as the site_name argument for the get()s below.

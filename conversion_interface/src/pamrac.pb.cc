@@ -63,9 +63,6 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* BlobResponse_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   BlobResponse_reflection_ = NULL;
-const ::google::protobuf::Descriptor* BlobResponse_NamedBlobFile_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  BlobResponse_NamedBlobFile_reflection_ = NULL;
 const ::google::protobuf::Descriptor* BlobUpload_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   BlobUpload_reflection_ = NULL;
@@ -102,15 +99,6 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* FriendNameMap_FriendNickname_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   FriendNameMap_FriendNickname_reflection_ = NULL;
-const ::google::protobuf::Descriptor* ConnectToNewStore_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  ConnectToNewStore_reflection_ = NULL;
-const ::google::protobuf::Descriptor* NewStoreConnectResult_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  NewStoreConnectResult_reflection_ = NULL;
-const ::google::protobuf::Descriptor* ConnectFriendServerResult_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  ConnectFriendServerResult_reflection_ = NULL;
 
 }  // namespace
 
@@ -122,7 +110,7 @@ void protobuf_AssignDesc_pamrac_2eproto() {
       "pamrac.proto");
   GOOGLE_CHECK(file != NULL);
   PAMRACMessage_descriptor_ = file->message_type(0);
-  static const int PAMRACMessage_offsets_[19] = {
+  static const int PAMRACMessage_offsets_[16] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAMRACMessage, user_fingerprint_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAMRACMessage, type_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAMRACMessage, init_blob_request_),
@@ -138,9 +126,6 @@ void protobuf_AssignDesc_pamrac_2eproto() {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAMRACMessage, key_share_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAMRACMessage, share_list_request_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAMRACMessage, share_list_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAMRACMessage, connect_to_new_store_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAMRACMessage, new_store_connect_result_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAMRACMessage, connect_friend_server_result_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAMRACMessage, client_pubkey_),
   };
   PAMRACMessage_reflection_ =
@@ -368,22 +353,6 @@ void protobuf_AssignDesc_pamrac_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(BlobResponse));
-  BlobResponse_NamedBlobFile_descriptor_ = BlobResponse_descriptor_->nested_type(0);
-  static const int BlobResponse_NamedBlobFile_offsets_[2] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BlobResponse_NamedBlobFile, name_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BlobResponse_NamedBlobFile, blob_),
-  };
-  BlobResponse_NamedBlobFile_reflection_ =
-    new ::google::protobuf::internal::GeneratedMessageReflection(
-      BlobResponse_NamedBlobFile_descriptor_,
-      BlobResponse_NamedBlobFile::default_instance_,
-      BlobResponse_NamedBlobFile_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BlobResponse_NamedBlobFile, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BlobResponse_NamedBlobFile, _unknown_fields_),
-      -1,
-      ::google::protobuf::DescriptorPool::generated_pool(),
-      ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(BlobResponse_NamedBlobFile));
   BlobUpload_descriptor_ = file->message_type(12);
   static const int BlobUpload_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BlobUpload, hashed_filename_),
@@ -578,11 +547,9 @@ void protobuf_AssignDesc_pamrac_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(FriendNameMap));
   FriendNameMap_FriendNickname_descriptor_ = FriendNameMap_descriptor_->nested_type(0);
-  static const int FriendNameMap_FriendNickname_offsets_[5] = {
+  static const int FriendNameMap_FriendNickname_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FriendNameMap_FriendNickname, name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FriendNameMap_FriendNickname, friend_fingerprint_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FriendNameMap_FriendNickname, friend_pubkey_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FriendNameMap_FriendNickname, friend_server_cert_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FriendNameMap_FriendNickname, server_address_),
   };
   FriendNameMap_FriendNickname_reflection_ =
@@ -596,57 +563,6 @@ void protobuf_AssignDesc_pamrac_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(FriendNameMap_FriendNickname));
-  ConnectToNewStore_descriptor_ = file->message_type(22);
-  static const int ConnectToNewStore_offsets_[5] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ConnectToNewStore, passcode_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ConnectToNewStore, public_key_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ConnectToNewStore, download_secret_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ConnectToNewStore, nickname_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ConnectToNewStore, encrypted_master_),
-  };
-  ConnectToNewStore_reflection_ =
-    new ::google::protobuf::internal::GeneratedMessageReflection(
-      ConnectToNewStore_descriptor_,
-      ConnectToNewStore::default_instance_,
-      ConnectToNewStore_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ConnectToNewStore, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ConnectToNewStore, _unknown_fields_),
-      -1,
-      ::google::protobuf::DescriptorPool::generated_pool(),
-      ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(ConnectToNewStore));
-  NewStoreConnectResult_descriptor_ = file->message_type(23);
-  static const int NewStoreConnectResult_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(NewStoreConnectResult, success_),
-  };
-  NewStoreConnectResult_reflection_ =
-    new ::google::protobuf::internal::GeneratedMessageReflection(
-      NewStoreConnectResult_descriptor_,
-      NewStoreConnectResult::default_instance_,
-      NewStoreConnectResult_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(NewStoreConnectResult, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(NewStoreConnectResult, _unknown_fields_),
-      -1,
-      ::google::protobuf::DescriptorPool::generated_pool(),
-      ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(NewStoreConnectResult));
-  ConnectFriendServerResult_descriptor_ = file->message_type(24);
-  static const int ConnectFriendServerResult_offsets_[3] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ConnectFriendServerResult, user_public_key_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ConnectFriendServerResult, server_cert_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ConnectFriendServerResult, sig_of_cert_),
-  };
-  ConnectFriendServerResult_reflection_ =
-    new ::google::protobuf::internal::GeneratedMessageReflection(
-      ConnectFriendServerResult_descriptor_,
-      ConnectFriendServerResult::default_instance_,
-      ConnectFriendServerResult_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ConnectFriendServerResult, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ConnectFriendServerResult, _unknown_fields_),
-      -1,
-      ::google::protobuf::DescriptorPool::generated_pool(),
-      ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(ConnectFriendServerResult));
 }
 
 namespace {
@@ -688,8 +604,6 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     BlobResponse_descriptor_, &BlobResponse::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    BlobResponse_NamedBlobFile_descriptor_, &BlobResponse_NamedBlobFile::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     BlobUpload_descriptor_, &BlobUpload::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     BlobUploadResult_descriptor_, &BlobUploadResult::default_instance());
@@ -713,12 +627,6 @@ void protobuf_RegisterTypes(const ::std::string&) {
     FriendNameMap_descriptor_, &FriendNameMap::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     FriendNameMap_FriendNickname_descriptor_, &FriendNameMap_FriendNickname::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    ConnectToNewStore_descriptor_, &ConnectToNewStore::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    NewStoreConnectResult_descriptor_, &NewStoreConnectResult::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    ConnectFriendServerResult_descriptor_, &ConnectFriendServerResult::default_instance());
 }
 
 }  // namespace
@@ -752,8 +660,6 @@ void protobuf_ShutdownFile_pamrac_2eproto() {
   delete BlobRequest_BlobHash_reflection_;
   delete BlobResponse::default_instance_;
   delete BlobResponse_reflection_;
-  delete BlobResponse_NamedBlobFile::default_instance_;
-  delete BlobResponse_NamedBlobFile_reflection_;
   delete BlobUpload::default_instance_;
   delete BlobUpload_reflection_;
   delete BlobUploadResult::default_instance_;
@@ -778,12 +684,6 @@ void protobuf_ShutdownFile_pamrac_2eproto() {
   delete FriendNameMap_reflection_;
   delete FriendNameMap_FriendNickname::default_instance_;
   delete FriendNameMap_FriendNickname_reflection_;
-  delete ConnectToNewStore::default_instance_;
-  delete ConnectToNewStore_reflection_;
-  delete NewStoreConnectResult::default_instance_;
-  delete NewStoreConnectResult_reflection_;
-  delete ConnectFriendServerResult::default_instance_;
-  delete ConnectFriendServerResult_reflection_;
 }
 
 void protobuf_AddDesc_pamrac_2eproto() {
@@ -793,7 +693,7 @@ void protobuf_AddDesc_pamrac_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\014pamrac.proto\022\006pamrac\"\336\013\n\rPAMRACMessage"
+    "\n\014pamrac.proto\022\006pamrac\"\243\t\n\rPAMRACMessage"
     "\022\030\n\020user_fingerprint\030\001 \001(\014\022(\n\004type\030\002 \002(\016"
     "2\032.pamrac.PAMRACMessage.Type\0222\n\021init_blo"
     "b_request\030\003 \001(\0132\027.pamrac.InitBlobRequest"
@@ -810,97 +710,79 @@ void protobuf_AddDesc_pamrac_2eproto() {
     "\030\014 \001(\0132\024.pamrac.ShareRequest\022#\n\tkey_shar"
     "e\030\r \001(\0132\020.pamrac.KeyShare\0224\n\022share_list_"
     "request\030\016 \001(\0132\030.pamrac.ShareListRequest\022"
-    "%\n\nshare_list\030\017 \001(\0132\021.pamrac.ShareList\0227"
-    "\n\024connect_to_new_store\030\020 \001(\0132\031.pamrac.Co"
-    "nnectToNewStore\022\?\n\030new_store_connect_res"
-    "ult\030\021 \001(\0132\035.pamrac.NewStoreConnectResult"
-    "\022G\n\034connect_friend_server_result\030\022 \001(\0132!"
-    ".pamrac.ConnectFriendServerResult\022\025\n\rcli"
-    "ent_pubkey\030\023 \001(\014\"\314\004\n\004Type\022\025\n\021INIT_BLOB_R"
-    "EQUEST\020\000\022\026\n\022INIT_BLOB_RESPONSE\020\001\022\020\n\014BLOB"
-    "_REQUEST\020\002\022\021\n\rBLOB_RESPONSE\020\003\022\024\n\020INIT_BL"
-    "OB_UPLOAD\020\004\022\025\n\021BLOB_UPLOAD_NONCE\020\005\022\017\n\013BL"
-    "OB_UPLOAD\020\006\022\026\n\022BLOB_UPLOAD_RESULT\020\007\022\025\n\021I"
-    "NIT_SHARE_UPLOAD\020\010\022\026\n\022SHARE_UPLOAD_NONCE"
-    "\020\t\022\020\n\014SHARE_UPLOAD\020\n\022\027\n\023SHARE_UPLOAD_RES"
-    "ULT\020\013\022\026\n\022INIT_SHARE_REQUEST\020\014\022\027\n\023SHARE_R"
-    "EQUEST_NONCE\020\r\022\021\n\rSHARE_REQUEST\020\016\022\r\n\tKEY"
-    "_SHARE\020\017\022\033\n\027INIT_SHARE_LIST_REQUEST\020\020\022\034\n"
-    "\030SHARE_LIST_REQUEST_NONCE\020\021\022\026\n\022SHARE_LIS"
-    "T_REQUEST\020\022\022\016\n\nSHARE_LIST\020\023\022\030\n\024CONNECT_T"
-    "O_NEW_STORE\020\024\022\034\n\030NEW_STORE_CONNECT_RESUL"
-    "T\020\025\022\034\n\030CONNECT_TO_FRIEND_SERVER\020\026\022 \n\034CON"
-    "NECT_FRIEND_SERVER_RESULT\020\027\022\022\n\016NOT_AUTHO"
-    "RIZED\020\030\"\036\n\rNonceResponse\022\r\n\005nonce\030\001 \002(\014\""
-    "a\n\010BlobFile\022\014\n\004salt\030\001 \001(\014\022\017\n\007version\030\002 \002"
-    "(\005\022\027\n\017aes_init_vector\030\003 \002(\014\022\035\n\025inner_blo"
-    "b_ciphertext\030\004 \002(\014\"r\n\tInnerBlob\022\020\n\010filen"
-    "ame\030\001 \002(\t\022*\n\006fields\030\002 \003(\0132\032.pamrac.Inner"
-    "Blob.KeyValue\032\'\n\010KeyValue\022\014\n\004name\030\001 \002(\t\022"
-    "\r\n\005value\030\002 \002(\t\"Z\n\027MasterKeyPasswordedFil"
-    "e\022\014\n\004salt\030\001 \002(\014\022\027\n\017aes_init_vector\030\002 \002(\014"
-    "\022\030\n\020inner_ciphertext\030\003 \002(\014\"|\n\017InnerPassw"
-    "orded\022\022\n\nmaster_key\030\001 \002(\014\022\024\n\014filenamesal"
-    "t\030\002 \002(\014\022\022\n\nsite_names\030\003 \003(\t\022\026\n\016downloads"
-    "ecret\030\004 \002(\014\022\023\n\013private_key\030\005 \002(\014\"l\n\030Mast"
-    "erKeyRetrievableFile\022\021\n\ttimestamp\030\001 \002(\003\022"
-    "\027\n\017aes_init_vector\030\002 \002(\014\022$\n\034inner_retrie"
-    "vable_ciphertext\030\003 \002(\014\">\n\020InnerRetrievab"
-    "le\022\022\n\nmaster_key\030\001 \002(\014\022\026\n\016DOWNLOADSECRET"
-    "\030\002 \002(\014\"\'\n\017InitBlobRequest\022\024\n\014all_hash_xo"
-    "r\030\001 \002(\014\"6\n\020InitBlobResponse\022\023\n\013xor_match"
-    "es\030\001 \002(\010\022\r\n\005nonce\030\002 \001(\014\"\246\001\n\013BlobRequest\022"
-    "2\n\014cached_blobs\030\001 \003(\0132\034.pamrac.BlobReque"
-    "st.BlobHash\022\034\n\024downloadsecret_proof\030\002 \002("
-    "\014\022\023\n\013proof_nonce\030\003 \002(\014\0320\n\010BlobHash\022\021\n\tbl"
-    "ob_name\030\001 \002(\t\022\021\n\tblob_hash\030\002 \002(\014\"\204\001\n\014Blo"
-    "bResponse\0225\n\tnew_blobs\030\001 \003(\0132\".pamrac.Bl"
-    "obResponse.NamedBlobFile\032=\n\rNamedBlobFil"
-    "e\022\014\n\004name\030\001 \002(\t\022\036\n\004blob\030\002 \002(\0132\020.pamrac.B"
-    "lobFile\"g\n\nBlobUpload\022\027\n\017hashed_filename"
-    "\030\001 \002(\t\022\036\n\004blob\030\002 \002(\0132\020.pamrac.BlobFile\022\r"
-    "\n\005nonce\030\003 \002(\014\022\021\n\tsignature\030\004 \001(\014\"^\n\020Blob"
-    "UploadResult\022\027\n\017verification_ok\030\001 \002(\010\022\031\n"
-    "\021upload_successful\030\002 \001(\010\022\026\n\016server_versi"
-    "on\030\003 \001(\005\"S\n\020ShareListRequest\022\035\n\025requeste"
-    "r_fingerprint\030\001 \002(\014\022\r\n\005nonce\030\002 \002(\014\022\021\n\tsi"
-    "gnature\030\003 \001(\014\"\306\001\n\tShareList\022\021\n\ttimestamp"
-    "\030\001 \002(\003\022\021\n\tthreshold\030\002 \002(\005\0224\n\nrecipients\030"
-    "\003 \003(\0132 .pamrac.ShareList.ShareRecipient\022"
-    "\021\n\tsignature\030\004 \001(\014\032J\n\016ShareRecipient\022\020\n\010"
-    "nickname\030\001 \001(\t\022\023\n\013fingerprint\030\002 \002(\014\022\021\n\ti"
-    "nitiator\030\003 \002(\010\"f\n\007ShareID\022\036\n\026originator_"
-    "fingerprint\030\001 \002(\014\022\031\n\021owner_fingerprint\030\002"
-    " \002(\014\022 \n\030encrypted_to_fingerprint\030\003 \002(\014\"S"
-    "\n\014ShareRequest\022!\n\010share_id\030\001 \002(\0132\017.pamra"
-    "c.ShareID\022\r\n\005nonce\030\002 \002(\014\022\021\n\tsignature\030\003 "
-    "\001(\014\"\301\001\n\010KeyShare\022\021\n\ttimestamp\030\001 \002(\003\022D\n\032m"
-    "asterkey_retrievable_file\030\002 \001(\0132 .pamrac"
-    ".MasterKeyRetrievableFile\022 \n\030encrypted_i"
-    "nitiator_mask\030\003 \001(\014\022\027\n\017encrypted_share\030\004"
-    " \002(\014\022!\n\010share_id\030\005 \002(\0132\017.pamrac.ShareID\""
-    "\225\001\n\013ShareUpload\022\"\n\trevoke_id\030\001 \003(\0132\017.pam"
-    "rac.ShareID\022\037\n\005share\030\002 \003(\0132\020.pamrac.KeyS"
-    "hare\022\037\n\004list\030\003 \001(\0132\021.pamrac.ShareList\022\r\n"
-    "\005nonce\030\004 \002(\014\022\021\n\tsignature\030\005 \001(\014\"y\n\021Share"
-    "UploadResult\022\027\n\017verification_ok\030\001 \002(\010\022$\n"
-    "\013ids_revoked\030\002 \003(\0132\017.pamrac.ShareID\022%\n\014s"
-    "hares_added\030\003 \003(\0132\017.pamrac.ShareID\"\364\001\n\rF"
-    "riendNameMap\0225\n\007friends\030\001 \003(\0132$.pamrac.F"
-    "riendNameMap.FriendNickname\022\021\n\ttimestamp"
-    "\030\002 \002(\003\022\021\n\tsignature\030\003 \001(\014\032\205\001\n\016FriendNick"
-    "name\022\014\n\004name\030\001 \002(\t\022\032\n\022friend_fingerprint"
-    "\030\002 \002(\014\022\025\n\rfriend_pubkey\030\003 \002(\014\022\032\n\022friend_"
-    "server_cert\030\004 \002(\014\022\026\n\016server_address\030\005 \002("
-    "\t\"\237\001\n\021ConnectToNewStore\022\020\n\010passcode\030\001 \002("
-    "\t\022\022\n\npublic_key\030\002 \002(\014\022\027\n\017download_secret"
-    "\030\003 \002(\014\022\020\n\010nickname\030\004 \001(\t\0229\n\020encrypted_ma"
-    "ster\030\005 \001(\0132\037.pamrac.MasterKeyPasswordedF"
-    "ile\"(\n\025NewStoreConnectResult\022\017\n\007success\030"
-    "\001 \002(\010\"^\n\031ConnectFriendServerResult\022\027\n\017us"
-    "er_public_key\030\001 \002(\014\022\023\n\013server_cert\030\002 \002(\014"
-    "\022\023\n\013sig_of_cert\030\003 \002(\014B6\n\'edu.illinois.cs"
-    ".salmon.fredshoppinglistB\013PAMRACProto", 4317);
+    "%\n\nshare_list\030\017 \001(\0132\021.pamrac.ShareList\022\025"
+    "\n\rclient_pubkey\030\020 \001(\014\"\324\003\n\004Type\022\025\n\021INIT_B"
+    "LOB_REQUEST\020\000\022\026\n\022INIT_BLOB_RESPONSE\020\001\022\020\n"
+    "\014BLOB_REQUEST\020\002\022\021\n\rBLOB_RESPONSE\020\003\022\024\n\020IN"
+    "IT_BLOB_UPLOAD\020\004\022\025\n\021BLOB_UPLOAD_NONCE\020\005\022"
+    "\017\n\013BLOB_UPLOAD\020\006\022\026\n\022BLOB_UPLOAD_RESULT\020\007"
+    "\022\025\n\021INIT_SHARE_UPLOAD\020\010\022\026\n\022SHARE_UPLOAD_"
+    "NONCE\020\t\022\020\n\014SHARE_UPLOAD\020\n\022\027\n\023SHARE_UPLOA"
+    "D_RESULT\020\013\022\026\n\022INIT_SHARE_REQUEST\020\014\022\027\n\023SH"
+    "ARE_REQUEST_NONCE\020\r\022\021\n\rSHARE_REQUEST\020\016\022\r"
+    "\n\tKEY_SHARE\020\017\022\033\n\027INIT_SHARE_LIST_REQUEST"
+    "\020\020\022\034\n\030SHARE_LIST_REQUEST_NONCE\020\021\022\026\n\022SHAR"
+    "E_LIST_REQUEST\020\022\022\016\n\nSHARE_LIST\020\023\022\022\n\016NOT_"
+    "AUTHORIZED\020\024\"\036\n\rNonceResponse\022\r\n\005nonce\030\001"
+    " \002(\014\"a\n\010BlobFile\022\014\n\004salt\030\001 \001(\014\022\017\n\007versio"
+    "n\030\002 \002(\005\022\027\n\017aes_init_vector\030\003 \002(\014\022\035\n\025inne"
+    "r_blob_ciphertext\030\004 \002(\014\"r\n\tInnerBlob\022\020\n\010"
+    "filename\030\001 \002(\t\022*\n\006fields\030\002 \003(\0132\032.pamrac."
+    "InnerBlob.KeyValue\032\'\n\010KeyValue\022\014\n\004name\030\001"
+    " \002(\t\022\r\n\005value\030\002 \002(\t\"Z\n\027MasterKeyPassword"
+    "edFile\022\014\n\004salt\030\001 \002(\014\022\027\n\017aes_init_vector\030"
+    "\002 \002(\014\022\030\n\020inner_ciphertext\030\003 \002(\014\"|\n\017Inner"
+    "Passworded\022\022\n\nmaster_key\030\001 \002(\014\022\024\n\014filena"
+    "mesalt\030\002 \002(\014\022\022\n\nsite_names\030\003 \003(\t\022\026\n\016down"
+    "loadsecret\030\004 \002(\014\022\023\n\013private_key\030\005 \002(\014\"l\n"
+    "\030MasterKeyRetrievableFile\022\021\n\ttimestamp\030\001"
+    " \002(\003\022\027\n\017aes_init_vector\030\002 \002(\014\022$\n\034inner_r"
+    "etrievable_ciphertext\030\003 \002(\014\">\n\020InnerRetr"
+    "ievable\022\022\n\nmaster_key\030\001 \002(\014\022\026\n\016DOWNLOADS"
+    "ECRET\030\002 \002(\014\"\'\n\017InitBlobRequest\022\024\n\014all_ha"
+    "sh_xor\030\001 \002(\014\"6\n\020InitBlobResponse\022\023\n\013xor_"
+    "matches\030\001 \002(\010\022\r\n\005nonce\030\002 \001(\014\"\246\001\n\013BlobReq"
+    "uest\0222\n\014cached_blobs\030\001 \003(\0132\034.pamrac.Blob"
+    "Request.BlobHash\022\034\n\024downloadsecret_proof"
+    "\030\002 \002(\014\022\023\n\013proof_nonce\030\003 \002(\014\0320\n\010BlobHash\022"
+    "\021\n\tblob_name\030\001 \002(\t\022\021\n\tblob_hash\030\002 \002(\014\"3\n"
+    "\014BlobResponse\022#\n\tnew_blobs\030\001 \003(\0132\020.pamra"
+    "c.BlobFile\"g\n\nBlobUpload\022\027\n\017hashed_filen"
+    "ame\030\001 \002(\t\022\036\n\004blob\030\002 \002(\0132\020.pamrac.BlobFil"
+    "e\022\r\n\005nonce\030\003 \002(\014\022\021\n\tsignature\030\004 \002(\014\"^\n\020B"
+    "lobUploadResult\022\027\n\017verification_ok\030\001 \002(\010"
+    "\022\031\n\021upload_successful\030\002 \001(\010\022\026\n\016server_ve"
+    "rsion\030\003 \001(\005\"S\n\020ShareListRequest\022\035\n\025reque"
+    "ster_fingerprint\030\001 \002(\014\022\r\n\005nonce\030\002 \002(\014\022\021\n"
+    "\tsignature\030\003 \002(\014\"\306\001\n\tShareList\022\021\n\ttimest"
+    "amp\030\001 \002(\003\022\021\n\tthreshold\030\002 \002(\005\0224\n\nrecipien"
+    "ts\030\003 \003(\0132 .pamrac.ShareList.ShareRecipie"
+    "nt\022\021\n\tsignature\030\004 \002(\014\032J\n\016ShareRecipient\022"
+    "\020\n\010nickname\030\001 \001(\t\022\023\n\013fingerprint\030\002 \002(\014\022\021"
+    "\n\tinitiator\030\003 \002(\010\"f\n\007ShareID\022\036\n\026originat"
+    "or_fingerprint\030\001 \002(\014\022\031\n\021owner_fingerprin"
+    "t\030\002 \002(\014\022 \n\030encrypted_to_fingerprint\030\003 \002("
+    "\014\"S\n\014ShareRequest\022!\n\010share_id\030\001 \002(\0132\017.pa"
+    "mrac.ShareID\022\r\n\005nonce\030\002 \002(\014\022\021\n\tsignature"
+    "\030\003 \002(\014\"\301\001\n\010KeyShare\022\021\n\ttimestamp\030\001 \002(\003\022D"
+    "\n\032masterkey_retrievable_file\030\002 \001(\0132 .pam"
+    "rac.MasterKeyRetrievableFile\022 \n\030encrypte"
+    "d_initiator_mask\030\003 \001(\014\022\027\n\017encrypted_shar"
+    "e\030\004 \002(\014\022!\n\010share_id\030\005 \002(\0132\017.pamrac.Share"
+    "ID\"\225\001\n\013ShareUpload\022\"\n\trevoke_id\030\001 \003(\0132\017."
+    "pamrac.ShareID\022\037\n\005share\030\002 \003(\0132\020.pamrac.K"
+    "eyShare\022\037\n\004list\030\003 \001(\0132\021.pamrac.ShareList"
+    "\022\r\n\005nonce\030\004 \002(\014\022\021\n\tsignature\030\005 \002(\014\"y\n\021Sh"
+    "areUploadResult\022\027\n\017verification_ok\030\001 \002(\010"
+    "\022$\n\013ids_revoked\030\002 \003(\0132\017.pamrac.ShareID\022%"
+    "\n\014shares_added\030\003 \003(\0132\017.pamrac.ShareID\"\300\001"
+    "\n\rFriendNameMap\0225\n\007friends\030\001 \003(\0132$.pamra"
+    "c.FriendNameMap.FriendNickname\022\021\n\ttimest"
+    "amp\030\002 \002(\003\022\021\n\tsignature\030\003 \002(\014\032R\n\016FriendNi"
+    "ckname\022\014\n\004name\030\001 \002(\t\022\032\n\022friend_fingerpri"
+    "nt\030\002 \002(\014\022\026\n\016server_address\030\003 \002(\tB6\n\'edu."
+    "illinois.cs.salmon.fredshoppinglistB\013PAM"
+    "RACProto", 3568);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "pamrac.proto", &protobuf_RegisterTypes);
   PAMRACMessage::default_instance_ = new PAMRACMessage();
@@ -917,7 +799,6 @@ void protobuf_AddDesc_pamrac_2eproto() {
   BlobRequest::default_instance_ = new BlobRequest();
   BlobRequest_BlobHash::default_instance_ = new BlobRequest_BlobHash();
   BlobResponse::default_instance_ = new BlobResponse();
-  BlobResponse_NamedBlobFile::default_instance_ = new BlobResponse_NamedBlobFile();
   BlobUpload::default_instance_ = new BlobUpload();
   BlobUploadResult::default_instance_ = new BlobUploadResult();
   ShareListRequest::default_instance_ = new ShareListRequest();
@@ -930,9 +811,6 @@ void protobuf_AddDesc_pamrac_2eproto() {
   ShareUploadResult::default_instance_ = new ShareUploadResult();
   FriendNameMap::default_instance_ = new FriendNameMap();
   FriendNameMap_FriendNickname::default_instance_ = new FriendNameMap_FriendNickname();
-  ConnectToNewStore::default_instance_ = new ConnectToNewStore();
-  NewStoreConnectResult::default_instance_ = new NewStoreConnectResult();
-  ConnectFriendServerResult::default_instance_ = new ConnectFriendServerResult();
   PAMRACMessage::default_instance_->InitAsDefaultInstance();
   NonceResponse::default_instance_->InitAsDefaultInstance();
   BlobFile::default_instance_->InitAsDefaultInstance();
@@ -947,7 +825,6 @@ void protobuf_AddDesc_pamrac_2eproto() {
   BlobRequest::default_instance_->InitAsDefaultInstance();
   BlobRequest_BlobHash::default_instance_->InitAsDefaultInstance();
   BlobResponse::default_instance_->InitAsDefaultInstance();
-  BlobResponse_NamedBlobFile::default_instance_->InitAsDefaultInstance();
   BlobUpload::default_instance_->InitAsDefaultInstance();
   BlobUploadResult::default_instance_->InitAsDefaultInstance();
   ShareListRequest::default_instance_->InitAsDefaultInstance();
@@ -960,9 +837,6 @@ void protobuf_AddDesc_pamrac_2eproto() {
   ShareUploadResult::default_instance_->InitAsDefaultInstance();
   FriendNameMap::default_instance_->InitAsDefaultInstance();
   FriendNameMap_FriendNickname::default_instance_->InitAsDefaultInstance();
-  ConnectToNewStore::default_instance_->InitAsDefaultInstance();
-  NewStoreConnectResult::default_instance_->InitAsDefaultInstance();
-  ConnectFriendServerResult::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_pamrac_2eproto);
 }
 
@@ -1002,10 +876,6 @@ bool PAMRACMessage_Type_IsValid(int value) {
     case 18:
     case 19:
     case 20:
-    case 21:
-    case 22:
-    case 23:
-    case 24:
       return true;
     default:
       return false;
@@ -1033,10 +903,6 @@ const PAMRACMessage_Type PAMRACMessage::INIT_SHARE_LIST_REQUEST;
 const PAMRACMessage_Type PAMRACMessage::SHARE_LIST_REQUEST_NONCE;
 const PAMRACMessage_Type PAMRACMessage::SHARE_LIST_REQUEST;
 const PAMRACMessage_Type PAMRACMessage::SHARE_LIST;
-const PAMRACMessage_Type PAMRACMessage::CONNECT_TO_NEW_STORE;
-const PAMRACMessage_Type PAMRACMessage::NEW_STORE_CONNECT_RESULT;
-const PAMRACMessage_Type PAMRACMessage::CONNECT_TO_FRIEND_SERVER;
-const PAMRACMessage_Type PAMRACMessage::CONNECT_FRIEND_SERVER_RESULT;
 const PAMRACMessage_Type PAMRACMessage::NOT_AUTHORIZED;
 const PAMRACMessage_Type PAMRACMessage::Type_MIN;
 const PAMRACMessage_Type PAMRACMessage::Type_MAX;
@@ -1058,9 +924,6 @@ const int PAMRACMessage::kShareRequestFieldNumber;
 const int PAMRACMessage::kKeyShareFieldNumber;
 const int PAMRACMessage::kShareListRequestFieldNumber;
 const int PAMRACMessage::kShareListFieldNumber;
-const int PAMRACMessage::kConnectToNewStoreFieldNumber;
-const int PAMRACMessage::kNewStoreConnectResultFieldNumber;
-const int PAMRACMessage::kConnectFriendServerResultFieldNumber;
 const int PAMRACMessage::kClientPubkeyFieldNumber;
 #endif  // !_MSC_VER
 
@@ -1084,9 +947,6 @@ void PAMRACMessage::InitAsDefaultInstance() {
   key_share_ = const_cast< ::pamrac::KeyShare*>(&::pamrac::KeyShare::default_instance());
   share_list_request_ = const_cast< ::pamrac::ShareListRequest*>(&::pamrac::ShareListRequest::default_instance());
   share_list_ = const_cast< ::pamrac::ShareList*>(&::pamrac::ShareList::default_instance());
-  connect_to_new_store_ = const_cast< ::pamrac::ConnectToNewStore*>(&::pamrac::ConnectToNewStore::default_instance());
-  new_store_connect_result_ = const_cast< ::pamrac::NewStoreConnectResult*>(&::pamrac::NewStoreConnectResult::default_instance());
-  connect_friend_server_result_ = const_cast< ::pamrac::ConnectFriendServerResult*>(&::pamrac::ConnectFriendServerResult::default_instance());
 }
 
 PAMRACMessage::PAMRACMessage(const PAMRACMessage& from)
@@ -1114,9 +974,6 @@ void PAMRACMessage::SharedCtor() {
   key_share_ = NULL;
   share_list_request_ = NULL;
   share_list_ = NULL;
-  connect_to_new_store_ = NULL;
-  new_store_connect_result_ = NULL;
-  connect_friend_server_result_ = NULL;
   client_pubkey_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -1147,9 +1004,6 @@ void PAMRACMessage::SharedDtor() {
     delete key_share_;
     delete share_list_request_;
     delete share_list_;
-    delete connect_to_new_store_;
-    delete new_store_connect_result_;
-    delete connect_friend_server_result_;
   }
 }
 
@@ -1222,17 +1076,6 @@ void PAMRACMessage::Clear() {
     }
     if (has_share_list()) {
       if (share_list_ != NULL) share_list_->::pamrac::ShareList::Clear();
-    }
-    if (has_connect_to_new_store()) {
-      if (connect_to_new_store_ != NULL) connect_to_new_store_->::pamrac::ConnectToNewStore::Clear();
-    }
-  }
-  if (_has_bits_[16 / 32] & 458752) {
-    if (has_new_store_connect_result()) {
-      if (new_store_connect_result_ != NULL) new_store_connect_result_->::pamrac::NewStoreConnectResult::Clear();
-    }
-    if (has_connect_friend_server_result()) {
-      if (connect_friend_server_result_ != NULL) connect_friend_server_result_->::pamrac::ConnectFriendServerResult::Clear();
     }
     if (has_client_pubkey()) {
       if (client_pubkey_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
@@ -1451,52 +1294,13 @@ bool PAMRACMessage::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(130)) goto parse_connect_to_new_store;
+        if (input->ExpectTag(130)) goto parse_client_pubkey;
         break;
       }
 
-      // optional .pamrac.ConnectToNewStore connect_to_new_store = 16;
+      // optional bytes client_pubkey = 16;
       case 16: {
         if (tag == 130) {
-         parse_connect_to_new_store:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_connect_to_new_store()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(138)) goto parse_new_store_connect_result;
-        break;
-      }
-
-      // optional .pamrac.NewStoreConnectResult new_store_connect_result = 17;
-      case 17: {
-        if (tag == 138) {
-         parse_new_store_connect_result:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_new_store_connect_result()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(146)) goto parse_connect_friend_server_result;
-        break;
-      }
-
-      // optional .pamrac.ConnectFriendServerResult connect_friend_server_result = 18;
-      case 18: {
-        if (tag == 146) {
-         parse_connect_friend_server_result:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_connect_friend_server_result()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(154)) goto parse_client_pubkey;
-        break;
-      }
-
-      // optional bytes client_pubkey = 19;
-      case 19: {
-        if (tag == 154) {
          parse_client_pubkey:
           DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
                 input, this->mutable_client_pubkey()));
@@ -1622,28 +1426,10 @@ void PAMRACMessage::SerializeWithCachedSizes(
       15, this->share_list(), output);
   }
 
-  // optional .pamrac.ConnectToNewStore connect_to_new_store = 16;
-  if (has_connect_to_new_store()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      16, this->connect_to_new_store(), output);
-  }
-
-  // optional .pamrac.NewStoreConnectResult new_store_connect_result = 17;
-  if (has_new_store_connect_result()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      17, this->new_store_connect_result(), output);
-  }
-
-  // optional .pamrac.ConnectFriendServerResult connect_friend_server_result = 18;
-  if (has_connect_friend_server_result()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      18, this->connect_friend_server_result(), output);
-  }
-
-  // optional bytes client_pubkey = 19;
+  // optional bytes client_pubkey = 16;
   if (has_client_pubkey()) {
     ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
-      19, this->client_pubkey(), output);
+      16, this->client_pubkey(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -1760,32 +1546,11 @@ void PAMRACMessage::SerializeWithCachedSizes(
         15, this->share_list(), target);
   }
 
-  // optional .pamrac.ConnectToNewStore connect_to_new_store = 16;
-  if (has_connect_to_new_store()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        16, this->connect_to_new_store(), target);
-  }
-
-  // optional .pamrac.NewStoreConnectResult new_store_connect_result = 17;
-  if (has_new_store_connect_result()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        17, this->new_store_connect_result(), target);
-  }
-
-  // optional .pamrac.ConnectFriendServerResult connect_friend_server_result = 18;
-  if (has_connect_friend_server_result()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        18, this->connect_friend_server_result(), target);
-  }
-
-  // optional bytes client_pubkey = 19;
+  // optional bytes client_pubkey = 16;
   if (has_client_pubkey()) {
     target =
       ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        19, this->client_pubkey(), target);
+        16, this->client_pubkey(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -1906,30 +1671,7 @@ int PAMRACMessage::ByteSize() const {
           this->share_list());
     }
 
-    // optional .pamrac.ConnectToNewStore connect_to_new_store = 16;
-    if (has_connect_to_new_store()) {
-      total_size += 2 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->connect_to_new_store());
-    }
-
-  }
-  if (_has_bits_[16 / 32] & (0xffu << (16 % 32))) {
-    // optional .pamrac.NewStoreConnectResult new_store_connect_result = 17;
-    if (has_new_store_connect_result()) {
-      total_size += 2 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->new_store_connect_result());
-    }
-
-    // optional .pamrac.ConnectFriendServerResult connect_friend_server_result = 18;
-    if (has_connect_friend_server_result()) {
-      total_size += 2 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->connect_friend_server_result());
-    }
-
-    // optional bytes client_pubkey = 19;
+    // optional bytes client_pubkey = 16;
     if (has_client_pubkey()) {
       total_size += 2 +
         ::google::protobuf::internal::WireFormatLite::BytesSize(
@@ -2010,17 +1752,6 @@ void PAMRACMessage::MergeFrom(const PAMRACMessage& from) {
     if (from.has_share_list()) {
       mutable_share_list()->::pamrac::ShareList::MergeFrom(from.share_list());
     }
-    if (from.has_connect_to_new_store()) {
-      mutable_connect_to_new_store()->::pamrac::ConnectToNewStore::MergeFrom(from.connect_to_new_store());
-    }
-  }
-  if (from._has_bits_[16 / 32] & (0xffu << (16 % 32))) {
-    if (from.has_new_store_connect_result()) {
-      mutable_new_store_connect_result()->::pamrac::NewStoreConnectResult::MergeFrom(from.new_store_connect_result());
-    }
-    if (from.has_connect_friend_server_result()) {
-      mutable_connect_friend_server_result()->::pamrac::ConnectFriendServerResult::MergeFrom(from.connect_friend_server_result());
-    }
     if (from.has_client_pubkey()) {
       set_client_pubkey(from.client_pubkey());
     }
@@ -2082,15 +1813,6 @@ bool PAMRACMessage::IsInitialized() const {
   if (has_share_list()) {
     if (!this->share_list().IsInitialized()) return false;
   }
-  if (has_connect_to_new_store()) {
-    if (!this->connect_to_new_store().IsInitialized()) return false;
-  }
-  if (has_new_store_connect_result()) {
-    if (!this->new_store_connect_result().IsInitialized()) return false;
-  }
-  if (has_connect_friend_server_result()) {
-    if (!this->connect_friend_server_result().IsInitialized()) return false;
-  }
   return true;
 }
 
@@ -2111,9 +1833,6 @@ void PAMRACMessage::Swap(PAMRACMessage* other) {
     std::swap(key_share_, other->key_share_);
     std::swap(share_list_request_, other->share_list_request_);
     std::swap(share_list_, other->share_list_);
-    std::swap(connect_to_new_store_, other->connect_to_new_store_);
-    std::swap(new_store_connect_result_, other->new_store_connect_result_);
-    std::swap(connect_friend_server_result_, other->connect_friend_server_result_);
     std::swap(client_pubkey_, other->client_pubkey_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
@@ -5793,299 +5512,6 @@ void BlobRequest::Swap(BlobRequest* other) {
 // ===================================================================
 
 #ifndef _MSC_VER
-const int BlobResponse_NamedBlobFile::kNameFieldNumber;
-const int BlobResponse_NamedBlobFile::kBlobFieldNumber;
-#endif  // !_MSC_VER
-
-BlobResponse_NamedBlobFile::BlobResponse_NamedBlobFile()
-  : ::google::protobuf::Message() {
-  SharedCtor();
-  // @@protoc_insertion_point(constructor:pamrac.BlobResponse.NamedBlobFile)
-}
-
-void BlobResponse_NamedBlobFile::InitAsDefaultInstance() {
-  blob_ = const_cast< ::pamrac::BlobFile*>(&::pamrac::BlobFile::default_instance());
-}
-
-BlobResponse_NamedBlobFile::BlobResponse_NamedBlobFile(const BlobResponse_NamedBlobFile& from)
-  : ::google::protobuf::Message() {
-  SharedCtor();
-  MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:pamrac.BlobResponse.NamedBlobFile)
-}
-
-void BlobResponse_NamedBlobFile::SharedCtor() {
-  ::google::protobuf::internal::GetEmptyString();
-  _cached_size_ = 0;
-  name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  blob_ = NULL;
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-}
-
-BlobResponse_NamedBlobFile::~BlobResponse_NamedBlobFile() {
-  // @@protoc_insertion_point(destructor:pamrac.BlobResponse.NamedBlobFile)
-  SharedDtor();
-}
-
-void BlobResponse_NamedBlobFile::SharedDtor() {
-  if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete name_;
-  }
-  if (this != default_instance_) {
-    delete blob_;
-  }
-}
-
-void BlobResponse_NamedBlobFile::SetCachedSize(int size) const {
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-}
-const ::google::protobuf::Descriptor* BlobResponse_NamedBlobFile::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return BlobResponse_NamedBlobFile_descriptor_;
-}
-
-const BlobResponse_NamedBlobFile& BlobResponse_NamedBlobFile::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_pamrac_2eproto();
-  return *default_instance_;
-}
-
-BlobResponse_NamedBlobFile* BlobResponse_NamedBlobFile::default_instance_ = NULL;
-
-BlobResponse_NamedBlobFile* BlobResponse_NamedBlobFile::New() const {
-  return new BlobResponse_NamedBlobFile;
-}
-
-void BlobResponse_NamedBlobFile::Clear() {
-  if (_has_bits_[0 / 32] & 3) {
-    if (has_name()) {
-      if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-        name_->clear();
-      }
-    }
-    if (has_blob()) {
-      if (blob_ != NULL) blob_->::pamrac::BlobFile::Clear();
-    }
-  }
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-  mutable_unknown_fields()->Clear();
-}
-
-bool BlobResponse_NamedBlobFile::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:pamrac.BlobResponse.NamedBlobFile)
-  for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required string name = 1;
-      case 1: {
-        if (tag == 10) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_name()));
-          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-            this->name().data(), this->name().length(),
-            ::google::protobuf::internal::WireFormat::PARSE,
-            "name");
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(18)) goto parse_blob;
-        break;
-      }
-
-      // required .pamrac.BlobFile blob = 2;
-      case 2: {
-        if (tag == 18) {
-         parse_blob:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_blob()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
-      }
-
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-success:
-  // @@protoc_insertion_point(parse_success:pamrac.BlobResponse.NamedBlobFile)
-  return true;
-failure:
-  // @@protoc_insertion_point(parse_failure:pamrac.BlobResponse.NamedBlobFile)
-  return false;
-#undef DO_
-}
-
-void BlobResponse_NamedBlobFile::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:pamrac.BlobResponse.NamedBlobFile)
-  // required string name = 1;
-  if (has_name()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->name().data(), this->name().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "name");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->name(), output);
-  }
-
-  // required .pamrac.BlobFile blob = 2;
-  if (has_blob()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      2, this->blob(), output);
-  }
-
-  if (!unknown_fields().empty()) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        unknown_fields(), output);
-  }
-  // @@protoc_insertion_point(serialize_end:pamrac.BlobResponse.NamedBlobFile)
-}
-
-::google::protobuf::uint8* BlobResponse_NamedBlobFile::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:pamrac.BlobResponse.NamedBlobFile)
-  // required string name = 1;
-  if (has_name()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->name().data(), this->name().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "name");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->name(), target);
-  }
-
-  // required .pamrac.BlobFile blob = 2;
-  if (has_blob()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        2, this->blob(), target);
-  }
-
-  if (!unknown_fields().empty()) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        unknown_fields(), target);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:pamrac.BlobResponse.NamedBlobFile)
-  return target;
-}
-
-int BlobResponse_NamedBlobFile::ByteSize() const {
-  int total_size = 0;
-
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required string name = 1;
-    if (has_name()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->name());
-    }
-
-    // required .pamrac.BlobFile blob = 2;
-    if (has_blob()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->blob());
-    }
-
-  }
-  if (!unknown_fields().empty()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        unknown_fields());
-  }
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-  return total_size;
-}
-
-void BlobResponse_NamedBlobFile::MergeFrom(const ::google::protobuf::Message& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  const BlobResponse_NamedBlobFile* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const BlobResponse_NamedBlobFile*>(
-      &from);
-  if (source == NULL) {
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-    MergeFrom(*source);
-  }
-}
-
-void BlobResponse_NamedBlobFile::MergeFrom(const BlobResponse_NamedBlobFile& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from.has_name()) {
-      set_name(from.name());
-    }
-    if (from.has_blob()) {
-      mutable_blob()->::pamrac::BlobFile::MergeFrom(from.blob());
-    }
-  }
-  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
-}
-
-void BlobResponse_NamedBlobFile::CopyFrom(const ::google::protobuf::Message& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void BlobResponse_NamedBlobFile::CopyFrom(const BlobResponse_NamedBlobFile& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool BlobResponse_NamedBlobFile::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
-
-  if (has_blob()) {
-    if (!this->blob().IsInitialized()) return false;
-  }
-  return true;
-}
-
-void BlobResponse_NamedBlobFile::Swap(BlobResponse_NamedBlobFile* other) {
-  if (other != this) {
-    std::swap(name_, other->name_);
-    std::swap(blob_, other->blob_);
-    std::swap(_has_bits_[0], other->_has_bits_[0]);
-    _unknown_fields_.Swap(&other->_unknown_fields_);
-    std::swap(_cached_size_, other->_cached_size_);
-  }
-}
-
-::google::protobuf::Metadata BlobResponse_NamedBlobFile::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = BlobResponse_NamedBlobFile_descriptor_;
-  metadata.reflection = BlobResponse_NamedBlobFile_reflection_;
-  return metadata;
-}
-
-
-// -------------------------------------------------------------------
-
-#ifndef _MSC_VER
 const int BlobResponse::kNewBlobsFieldNumber;
 #endif  // !_MSC_VER
 
@@ -6157,7 +5583,7 @@ bool BlobResponse::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .pamrac.BlobResponse.NamedBlobFile new_blobs = 1;
+      // repeated .pamrac.BlobFile new_blobs = 1;
       case 1: {
         if (tag == 10) {
          parse_new_blobs:
@@ -6196,7 +5622,7 @@ failure:
 void BlobResponse::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:pamrac.BlobResponse)
-  // repeated .pamrac.BlobResponse.NamedBlobFile new_blobs = 1;
+  // repeated .pamrac.BlobFile new_blobs = 1;
   for (int i = 0; i < this->new_blobs_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, this->new_blobs(i), output);
@@ -6212,7 +5638,7 @@ void BlobResponse::SerializeWithCachedSizes(
 ::google::protobuf::uint8* BlobResponse::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:pamrac.BlobResponse)
-  // repeated .pamrac.BlobResponse.NamedBlobFile new_blobs = 1;
+  // repeated .pamrac.BlobFile new_blobs = 1;
   for (int i = 0; i < this->new_blobs_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -6230,7 +5656,7 @@ void BlobResponse::SerializeWithCachedSizes(
 int BlobResponse::ByteSize() const {
   int total_size = 0;
 
-  // repeated .pamrac.BlobResponse.NamedBlobFile new_blobs = 1;
+  // repeated .pamrac.BlobFile new_blobs = 1;
   total_size += 1 * this->new_blobs_size();
   for (int i = 0; i < this->new_blobs_size(); i++) {
     total_size +=
@@ -6457,7 +5883,7 @@ bool BlobUpload::MergePartialFromCodedStream(
         break;
       }
 
-      // optional bytes signature = 4;
+      // required bytes signature = 4;
       case 4: {
         if (tag == 34) {
          parse_signature:
@@ -6517,7 +5943,7 @@ void BlobUpload::SerializeWithCachedSizes(
       3, this->nonce(), output);
   }
 
-  // optional bytes signature = 4;
+  // required bytes signature = 4;
   if (has_signature()) {
     ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
       4, this->signature(), output);
@@ -6558,7 +5984,7 @@ void BlobUpload::SerializeWithCachedSizes(
         3, this->nonce(), target);
   }
 
-  // optional bytes signature = 4;
+  // required bytes signature = 4;
   if (has_signature()) {
     target =
       ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
@@ -6598,7 +6024,7 @@ int BlobUpload::ByteSize() const {
           this->nonce());
     }
 
-    // optional bytes signature = 4;
+    // required bytes signature = 4;
     if (has_signature()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::BytesSize(
@@ -6661,7 +6087,7 @@ void BlobUpload::CopyFrom(const BlobUpload& from) {
 }
 
 bool BlobUpload::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000007) != 0x00000007) return false;
+  if ((_has_bits_[0] & 0x0000000f) != 0x0000000f) return false;
 
   if (has_blob()) {
     if (!this->blob().IsInitialized()) return false;
@@ -7129,7 +6555,7 @@ bool ShareListRequest::MergePartialFromCodedStream(
         break;
       }
 
-      // optional bytes signature = 3;
+      // required bytes signature = 3;
       case 3: {
         if (tag == 26) {
          parse_signature:
@@ -7179,7 +6605,7 @@ void ShareListRequest::SerializeWithCachedSizes(
       2, this->nonce(), output);
   }
 
-  // optional bytes signature = 3;
+  // required bytes signature = 3;
   if (has_signature()) {
     ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
       3, this->signature(), output);
@@ -7209,7 +6635,7 @@ void ShareListRequest::SerializeWithCachedSizes(
         2, this->nonce(), target);
   }
 
-  // optional bytes signature = 3;
+  // required bytes signature = 3;
   if (has_signature()) {
     target =
       ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
@@ -7242,7 +6668,7 @@ int ShareListRequest::ByteSize() const {
           this->nonce());
     }
 
-    // optional bytes signature = 3;
+    // required bytes signature = 3;
     if (has_signature()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::BytesSize(
@@ -7302,7 +6728,7 @@ void ShareListRequest::CopyFrom(const ShareListRequest& from) {
 }
 
 bool ShareListRequest::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
+  if ((_has_bits_[0] & 0x00000007) != 0x00000007) return false;
 
   return true;
 }
@@ -7793,7 +7219,7 @@ bool ShareList::MergePartialFromCodedStream(
         break;
       }
 
-      // optional bytes signature = 4;
+      // required bytes signature = 4;
       case 4: {
         if (tag == 34) {
          parse_signature:
@@ -7847,7 +7273,7 @@ void ShareList::SerializeWithCachedSizes(
       3, this->recipients(i), output);
   }
 
-  // optional bytes signature = 4;
+  // required bytes signature = 4;
   if (has_signature()) {
     ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
       4, this->signature(), output);
@@ -7880,7 +7306,7 @@ void ShareList::SerializeWithCachedSizes(
         3, this->recipients(i), target);
   }
 
-  // optional bytes signature = 4;
+  // required bytes signature = 4;
   if (has_signature()) {
     target =
       ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
@@ -7913,7 +7339,7 @@ int ShareList::ByteSize() const {
           this->threshold());
     }
 
-    // optional bytes signature = 4;
+    // required bytes signature = 4;
     if (has_signature()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::BytesSize(
@@ -7982,7 +7408,7 @@ void ShareList::CopyFrom(const ShareList& from) {
 }
 
 bool ShareList::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
+  if ((_has_bits_[0] & 0x0000000b) != 0x0000000b) return false;
 
   if (!::google::protobuf::internal::AllAreInitialized(this->recipients())) return false;
   return true;
@@ -8464,7 +7890,7 @@ bool ShareRequest::MergePartialFromCodedStream(
         break;
       }
 
-      // optional bytes signature = 3;
+      // required bytes signature = 3;
       case 3: {
         if (tag == 26) {
          parse_signature:
@@ -8514,7 +7940,7 @@ void ShareRequest::SerializeWithCachedSizes(
       2, this->nonce(), output);
   }
 
-  // optional bytes signature = 3;
+  // required bytes signature = 3;
   if (has_signature()) {
     ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
       3, this->signature(), output);
@@ -8544,7 +7970,7 @@ void ShareRequest::SerializeWithCachedSizes(
         2, this->nonce(), target);
   }
 
-  // optional bytes signature = 3;
+  // required bytes signature = 3;
   if (has_signature()) {
     target =
       ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
@@ -8577,7 +8003,7 @@ int ShareRequest::ByteSize() const {
           this->nonce());
     }
 
-    // optional bytes signature = 3;
+    // required bytes signature = 3;
     if (has_signature()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::BytesSize(
@@ -8637,7 +8063,7 @@ void ShareRequest::CopyFrom(const ShareRequest& from) {
 }
 
 bool ShareRequest::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
+  if ((_has_bits_[0] & 0x00000007) != 0x00000007) return false;
 
   if (has_share_id()) {
     if (!this->share_id().IsInitialized()) return false;
@@ -9239,7 +8665,7 @@ bool ShareUpload::MergePartialFromCodedStream(
         break;
       }
 
-      // optional bytes signature = 5;
+      // required bytes signature = 5;
       case 5: {
         if (tag == 42) {
          parse_signature:
@@ -9301,7 +8727,7 @@ void ShareUpload::SerializeWithCachedSizes(
       4, this->nonce(), output);
   }
 
-  // optional bytes signature = 5;
+  // required bytes signature = 5;
   if (has_signature()) {
     ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
       5, this->signature(), output);
@@ -9345,7 +8771,7 @@ void ShareUpload::SerializeWithCachedSizes(
         4, this->nonce(), target);
   }
 
-  // optional bytes signature = 5;
+  // required bytes signature = 5;
   if (has_signature()) {
     target =
       ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
@@ -9378,7 +8804,7 @@ int ShareUpload::ByteSize() const {
           this->nonce());
     }
 
-    // optional bytes signature = 5;
+    // required bytes signature = 5;
     if (has_signature()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::BytesSize(
@@ -9456,7 +8882,7 @@ void ShareUpload::CopyFrom(const ShareUpload& from) {
 }
 
 bool ShareUpload::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000008) != 0x00000008) return false;
+  if ((_has_bits_[0] & 0x00000018) != 0x00000018) return false;
 
   if (!::google::protobuf::internal::AllAreInitialized(this->revoke_id())) return false;
   if (!::google::protobuf::internal::AllAreInitialized(this->share())) return false;
@@ -9794,8 +9220,6 @@ void ShareUploadResult::Swap(ShareUploadResult* other) {
 #ifndef _MSC_VER
 const int FriendNameMap_FriendNickname::kNameFieldNumber;
 const int FriendNameMap_FriendNickname::kFriendFingerprintFieldNumber;
-const int FriendNameMap_FriendNickname::kFriendPubkeyFieldNumber;
-const int FriendNameMap_FriendNickname::kFriendServerCertFieldNumber;
 const int FriendNameMap_FriendNickname::kServerAddressFieldNumber;
 #endif  // !_MSC_VER
 
@@ -9820,8 +9244,6 @@ void FriendNameMap_FriendNickname::SharedCtor() {
   _cached_size_ = 0;
   name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   friend_fingerprint_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  friend_pubkey_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  friend_server_cert_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   server_address_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -9837,12 +9259,6 @@ void FriendNameMap_FriendNickname::SharedDtor() {
   }
   if (friend_fingerprint_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     delete friend_fingerprint_;
-  }
-  if (friend_pubkey_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete friend_pubkey_;
-  }
-  if (friend_server_cert_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete friend_server_cert_;
   }
   if (server_address_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     delete server_address_;
@@ -9873,7 +9289,7 @@ FriendNameMap_FriendNickname* FriendNameMap_FriendNickname::New() const {
 }
 
 void FriendNameMap_FriendNickname::Clear() {
-  if (_has_bits_[0 / 32] & 31) {
+  if (_has_bits_[0 / 32] & 7) {
     if (has_name()) {
       if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
         name_->clear();
@@ -9882,16 +9298,6 @@ void FriendNameMap_FriendNickname::Clear() {
     if (has_friend_fingerprint()) {
       if (friend_fingerprint_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
         friend_fingerprint_->clear();
-      }
-    }
-    if (has_friend_pubkey()) {
-      if (friend_pubkey_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-        friend_pubkey_->clear();
-      }
-    }
-    if (has_friend_server_cert()) {
-      if (friend_server_cert_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-        friend_server_cert_->clear();
       }
     }
     if (has_server_address()) {
@@ -9939,39 +9345,13 @@ bool FriendNameMap_FriendNickname::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_friend_pubkey;
+        if (input->ExpectTag(26)) goto parse_server_address;
         break;
       }
 
-      // required bytes friend_pubkey = 3;
+      // required string server_address = 3;
       case 3: {
         if (tag == 26) {
-         parse_friend_pubkey:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_friend_pubkey()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(34)) goto parse_friend_server_cert;
-        break;
-      }
-
-      // required bytes friend_server_cert = 4;
-      case 4: {
-        if (tag == 34) {
-         parse_friend_server_cert:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_friend_server_cert()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(42)) goto parse_server_address;
-        break;
-      }
-
-      // required string server_address = 5;
-      case 5: {
-        if (tag == 42) {
          parse_server_address:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_server_address()));
@@ -10027,26 +9407,14 @@ void FriendNameMap_FriendNickname::SerializeWithCachedSizes(
       2, this->friend_fingerprint(), output);
   }
 
-  // required bytes friend_pubkey = 3;
-  if (has_friend_pubkey()) {
-    ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
-      3, this->friend_pubkey(), output);
-  }
-
-  // required bytes friend_server_cert = 4;
-  if (has_friend_server_cert()) {
-    ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
-      4, this->friend_server_cert(), output);
-  }
-
-  // required string server_address = 5;
+  // required string server_address = 3;
   if (has_server_address()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->server_address().data(), this->server_address().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
       "server_address");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      5, this->server_address(), output);
+      3, this->server_address(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -10077,21 +9445,7 @@ void FriendNameMap_FriendNickname::SerializeWithCachedSizes(
         2, this->friend_fingerprint(), target);
   }
 
-  // required bytes friend_pubkey = 3;
-  if (has_friend_pubkey()) {
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        3, this->friend_pubkey(), target);
-  }
-
-  // required bytes friend_server_cert = 4;
-  if (has_friend_server_cert()) {
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        4, this->friend_server_cert(), target);
-  }
-
-  // required string server_address = 5;
+  // required string server_address = 3;
   if (has_server_address()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->server_address().data(), this->server_address().length(),
@@ -10099,7 +9453,7 @@ void FriendNameMap_FriendNickname::SerializeWithCachedSizes(
       "server_address");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        5, this->server_address(), target);
+        3, this->server_address(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -10128,21 +9482,7 @@ int FriendNameMap_FriendNickname::ByteSize() const {
           this->friend_fingerprint());
     }
 
-    // required bytes friend_pubkey = 3;
-    if (has_friend_pubkey()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::BytesSize(
-          this->friend_pubkey());
-    }
-
-    // required bytes friend_server_cert = 4;
-    if (has_friend_server_cert()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::BytesSize(
-          this->friend_server_cert());
-    }
-
-    // required string server_address = 5;
+    // required string server_address = 3;
     if (has_server_address()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -10182,12 +9522,6 @@ void FriendNameMap_FriendNickname::MergeFrom(const FriendNameMap_FriendNickname&
     if (from.has_friend_fingerprint()) {
       set_friend_fingerprint(from.friend_fingerprint());
     }
-    if (from.has_friend_pubkey()) {
-      set_friend_pubkey(from.friend_pubkey());
-    }
-    if (from.has_friend_server_cert()) {
-      set_friend_server_cert(from.friend_server_cert());
-    }
     if (from.has_server_address()) {
       set_server_address(from.server_address());
     }
@@ -10208,7 +9542,7 @@ void FriendNameMap_FriendNickname::CopyFrom(const FriendNameMap_FriendNickname& 
 }
 
 bool FriendNameMap_FriendNickname::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000001f) != 0x0000001f) return false;
+  if ((_has_bits_[0] & 0x00000007) != 0x00000007) return false;
 
   return true;
 }
@@ -10217,8 +9551,6 @@ void FriendNameMap_FriendNickname::Swap(FriendNameMap_FriendNickname* other) {
   if (other != this) {
     std::swap(name_, other->name_);
     std::swap(friend_fingerprint_, other->friend_fingerprint_);
-    std::swap(friend_pubkey_, other->friend_pubkey_);
-    std::swap(friend_server_cert_, other->friend_server_cert_);
     std::swap(server_address_, other->server_address_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
@@ -10354,7 +9686,7 @@ bool FriendNameMap::MergePartialFromCodedStream(
         break;
       }
 
-      // optional bytes signature = 3;
+      // required bytes signature = 3;
       case 3: {
         if (tag == 26) {
          parse_signature:
@@ -10403,7 +9735,7 @@ void FriendNameMap::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->timestamp(), output);
   }
 
-  // optional bytes signature = 3;
+  // required bytes signature = 3;
   if (has_signature()) {
     ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
       3, this->signature(), output);
@@ -10431,7 +9763,7 @@ void FriendNameMap::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->timestamp(), target);
   }
 
-  // optional bytes signature = 3;
+  // required bytes signature = 3;
   if (has_signature()) {
     target =
       ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
@@ -10457,7 +9789,7 @@ int FriendNameMap::ByteSize() const {
           this->timestamp());
     }
 
-    // optional bytes signature = 3;
+    // required bytes signature = 3;
     if (has_signature()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::BytesSize(
@@ -10523,7 +9855,7 @@ void FriendNameMap::CopyFrom(const FriendNameMap& from) {
 }
 
 bool FriendNameMap::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000002) != 0x00000002) return false;
+  if ((_has_bits_[0] & 0x00000006) != 0x00000006) return false;
 
   if (!::google::protobuf::internal::AllAreInitialized(this->friends())) return false;
   return true;
@@ -10545,1001 +9877,6 @@ void FriendNameMap::Swap(FriendNameMap* other) {
   ::google::protobuf::Metadata metadata;
   metadata.descriptor = FriendNameMap_descriptor_;
   metadata.reflection = FriendNameMap_reflection_;
-  return metadata;
-}
-
-
-// ===================================================================
-
-#ifndef _MSC_VER
-const int ConnectToNewStore::kPasscodeFieldNumber;
-const int ConnectToNewStore::kPublicKeyFieldNumber;
-const int ConnectToNewStore::kDownloadSecretFieldNumber;
-const int ConnectToNewStore::kNicknameFieldNumber;
-const int ConnectToNewStore::kEncryptedMasterFieldNumber;
-#endif  // !_MSC_VER
-
-ConnectToNewStore::ConnectToNewStore()
-  : ::google::protobuf::Message() {
-  SharedCtor();
-  // @@protoc_insertion_point(constructor:pamrac.ConnectToNewStore)
-}
-
-void ConnectToNewStore::InitAsDefaultInstance() {
-  encrypted_master_ = const_cast< ::pamrac::MasterKeyPasswordedFile*>(&::pamrac::MasterKeyPasswordedFile::default_instance());
-}
-
-ConnectToNewStore::ConnectToNewStore(const ConnectToNewStore& from)
-  : ::google::protobuf::Message() {
-  SharedCtor();
-  MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:pamrac.ConnectToNewStore)
-}
-
-void ConnectToNewStore::SharedCtor() {
-  ::google::protobuf::internal::GetEmptyString();
-  _cached_size_ = 0;
-  passcode_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  public_key_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  download_secret_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  nickname_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  encrypted_master_ = NULL;
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-}
-
-ConnectToNewStore::~ConnectToNewStore() {
-  // @@protoc_insertion_point(destructor:pamrac.ConnectToNewStore)
-  SharedDtor();
-}
-
-void ConnectToNewStore::SharedDtor() {
-  if (passcode_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete passcode_;
-  }
-  if (public_key_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete public_key_;
-  }
-  if (download_secret_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete download_secret_;
-  }
-  if (nickname_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete nickname_;
-  }
-  if (this != default_instance_) {
-    delete encrypted_master_;
-  }
-}
-
-void ConnectToNewStore::SetCachedSize(int size) const {
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-}
-const ::google::protobuf::Descriptor* ConnectToNewStore::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return ConnectToNewStore_descriptor_;
-}
-
-const ConnectToNewStore& ConnectToNewStore::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_pamrac_2eproto();
-  return *default_instance_;
-}
-
-ConnectToNewStore* ConnectToNewStore::default_instance_ = NULL;
-
-ConnectToNewStore* ConnectToNewStore::New() const {
-  return new ConnectToNewStore;
-}
-
-void ConnectToNewStore::Clear() {
-  if (_has_bits_[0 / 32] & 31) {
-    if (has_passcode()) {
-      if (passcode_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-        passcode_->clear();
-      }
-    }
-    if (has_public_key()) {
-      if (public_key_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-        public_key_->clear();
-      }
-    }
-    if (has_download_secret()) {
-      if (download_secret_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-        download_secret_->clear();
-      }
-    }
-    if (has_nickname()) {
-      if (nickname_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-        nickname_->clear();
-      }
-    }
-    if (has_encrypted_master()) {
-      if (encrypted_master_ != NULL) encrypted_master_->::pamrac::MasterKeyPasswordedFile::Clear();
-    }
-  }
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-  mutable_unknown_fields()->Clear();
-}
-
-bool ConnectToNewStore::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:pamrac.ConnectToNewStore)
-  for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required string passcode = 1;
-      case 1: {
-        if (tag == 10) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_passcode()));
-          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-            this->passcode().data(), this->passcode().length(),
-            ::google::protobuf::internal::WireFormat::PARSE,
-            "passcode");
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(18)) goto parse_public_key;
-        break;
-      }
-
-      // required bytes public_key = 2;
-      case 2: {
-        if (tag == 18) {
-         parse_public_key:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_public_key()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(26)) goto parse_download_secret;
-        break;
-      }
-
-      // required bytes download_secret = 3;
-      case 3: {
-        if (tag == 26) {
-         parse_download_secret:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_download_secret()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(34)) goto parse_nickname;
-        break;
-      }
-
-      // optional string nickname = 4;
-      case 4: {
-        if (tag == 34) {
-         parse_nickname:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_nickname()));
-          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-            this->nickname().data(), this->nickname().length(),
-            ::google::protobuf::internal::WireFormat::PARSE,
-            "nickname");
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(42)) goto parse_encrypted_master;
-        break;
-      }
-
-      // optional .pamrac.MasterKeyPasswordedFile encrypted_master = 5;
-      case 5: {
-        if (tag == 42) {
-         parse_encrypted_master:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_encrypted_master()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
-      }
-
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-success:
-  // @@protoc_insertion_point(parse_success:pamrac.ConnectToNewStore)
-  return true;
-failure:
-  // @@protoc_insertion_point(parse_failure:pamrac.ConnectToNewStore)
-  return false;
-#undef DO_
-}
-
-void ConnectToNewStore::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:pamrac.ConnectToNewStore)
-  // required string passcode = 1;
-  if (has_passcode()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->passcode().data(), this->passcode().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "passcode");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->passcode(), output);
-  }
-
-  // required bytes public_key = 2;
-  if (has_public_key()) {
-    ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
-      2, this->public_key(), output);
-  }
-
-  // required bytes download_secret = 3;
-  if (has_download_secret()) {
-    ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
-      3, this->download_secret(), output);
-  }
-
-  // optional string nickname = 4;
-  if (has_nickname()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->nickname().data(), this->nickname().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "nickname");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      4, this->nickname(), output);
-  }
-
-  // optional .pamrac.MasterKeyPasswordedFile encrypted_master = 5;
-  if (has_encrypted_master()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      5, this->encrypted_master(), output);
-  }
-
-  if (!unknown_fields().empty()) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        unknown_fields(), output);
-  }
-  // @@protoc_insertion_point(serialize_end:pamrac.ConnectToNewStore)
-}
-
-::google::protobuf::uint8* ConnectToNewStore::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:pamrac.ConnectToNewStore)
-  // required string passcode = 1;
-  if (has_passcode()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->passcode().data(), this->passcode().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "passcode");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->passcode(), target);
-  }
-
-  // required bytes public_key = 2;
-  if (has_public_key()) {
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        2, this->public_key(), target);
-  }
-
-  // required bytes download_secret = 3;
-  if (has_download_secret()) {
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        3, this->download_secret(), target);
-  }
-
-  // optional string nickname = 4;
-  if (has_nickname()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->nickname().data(), this->nickname().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "nickname");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        4, this->nickname(), target);
-  }
-
-  // optional .pamrac.MasterKeyPasswordedFile encrypted_master = 5;
-  if (has_encrypted_master()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        5, this->encrypted_master(), target);
-  }
-
-  if (!unknown_fields().empty()) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        unknown_fields(), target);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:pamrac.ConnectToNewStore)
-  return target;
-}
-
-int ConnectToNewStore::ByteSize() const {
-  int total_size = 0;
-
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required string passcode = 1;
-    if (has_passcode()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->passcode());
-    }
-
-    // required bytes public_key = 2;
-    if (has_public_key()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::BytesSize(
-          this->public_key());
-    }
-
-    // required bytes download_secret = 3;
-    if (has_download_secret()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::BytesSize(
-          this->download_secret());
-    }
-
-    // optional string nickname = 4;
-    if (has_nickname()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->nickname());
-    }
-
-    // optional .pamrac.MasterKeyPasswordedFile encrypted_master = 5;
-    if (has_encrypted_master()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->encrypted_master());
-    }
-
-  }
-  if (!unknown_fields().empty()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        unknown_fields());
-  }
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-  return total_size;
-}
-
-void ConnectToNewStore::MergeFrom(const ::google::protobuf::Message& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  const ConnectToNewStore* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const ConnectToNewStore*>(
-      &from);
-  if (source == NULL) {
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-    MergeFrom(*source);
-  }
-}
-
-void ConnectToNewStore::MergeFrom(const ConnectToNewStore& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from.has_passcode()) {
-      set_passcode(from.passcode());
-    }
-    if (from.has_public_key()) {
-      set_public_key(from.public_key());
-    }
-    if (from.has_download_secret()) {
-      set_download_secret(from.download_secret());
-    }
-    if (from.has_nickname()) {
-      set_nickname(from.nickname());
-    }
-    if (from.has_encrypted_master()) {
-      mutable_encrypted_master()->::pamrac::MasterKeyPasswordedFile::MergeFrom(from.encrypted_master());
-    }
-  }
-  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
-}
-
-void ConnectToNewStore::CopyFrom(const ::google::protobuf::Message& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void ConnectToNewStore::CopyFrom(const ConnectToNewStore& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool ConnectToNewStore::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000007) != 0x00000007) return false;
-
-  if (has_encrypted_master()) {
-    if (!this->encrypted_master().IsInitialized()) return false;
-  }
-  return true;
-}
-
-void ConnectToNewStore::Swap(ConnectToNewStore* other) {
-  if (other != this) {
-    std::swap(passcode_, other->passcode_);
-    std::swap(public_key_, other->public_key_);
-    std::swap(download_secret_, other->download_secret_);
-    std::swap(nickname_, other->nickname_);
-    std::swap(encrypted_master_, other->encrypted_master_);
-    std::swap(_has_bits_[0], other->_has_bits_[0]);
-    _unknown_fields_.Swap(&other->_unknown_fields_);
-    std::swap(_cached_size_, other->_cached_size_);
-  }
-}
-
-::google::protobuf::Metadata ConnectToNewStore::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = ConnectToNewStore_descriptor_;
-  metadata.reflection = ConnectToNewStore_reflection_;
-  return metadata;
-}
-
-
-// ===================================================================
-
-#ifndef _MSC_VER
-const int NewStoreConnectResult::kSuccessFieldNumber;
-#endif  // !_MSC_VER
-
-NewStoreConnectResult::NewStoreConnectResult()
-  : ::google::protobuf::Message() {
-  SharedCtor();
-  // @@protoc_insertion_point(constructor:pamrac.NewStoreConnectResult)
-}
-
-void NewStoreConnectResult::InitAsDefaultInstance() {
-}
-
-NewStoreConnectResult::NewStoreConnectResult(const NewStoreConnectResult& from)
-  : ::google::protobuf::Message() {
-  SharedCtor();
-  MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:pamrac.NewStoreConnectResult)
-}
-
-void NewStoreConnectResult::SharedCtor() {
-  _cached_size_ = 0;
-  success_ = false;
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-}
-
-NewStoreConnectResult::~NewStoreConnectResult() {
-  // @@protoc_insertion_point(destructor:pamrac.NewStoreConnectResult)
-  SharedDtor();
-}
-
-void NewStoreConnectResult::SharedDtor() {
-  if (this != default_instance_) {
-  }
-}
-
-void NewStoreConnectResult::SetCachedSize(int size) const {
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-}
-const ::google::protobuf::Descriptor* NewStoreConnectResult::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return NewStoreConnectResult_descriptor_;
-}
-
-const NewStoreConnectResult& NewStoreConnectResult::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_pamrac_2eproto();
-  return *default_instance_;
-}
-
-NewStoreConnectResult* NewStoreConnectResult::default_instance_ = NULL;
-
-NewStoreConnectResult* NewStoreConnectResult::New() const {
-  return new NewStoreConnectResult;
-}
-
-void NewStoreConnectResult::Clear() {
-  success_ = false;
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-  mutable_unknown_fields()->Clear();
-}
-
-bool NewStoreConnectResult::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:pamrac.NewStoreConnectResult)
-  for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required bool success = 1;
-      case 1: {
-        if (tag == 8) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &success_)));
-          set_has_success();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
-      }
-
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-success:
-  // @@protoc_insertion_point(parse_success:pamrac.NewStoreConnectResult)
-  return true;
-failure:
-  // @@protoc_insertion_point(parse_failure:pamrac.NewStoreConnectResult)
-  return false;
-#undef DO_
-}
-
-void NewStoreConnectResult::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:pamrac.NewStoreConnectResult)
-  // required bool success = 1;
-  if (has_success()) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(1, this->success(), output);
-  }
-
-  if (!unknown_fields().empty()) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        unknown_fields(), output);
-  }
-  // @@protoc_insertion_point(serialize_end:pamrac.NewStoreConnectResult)
-}
-
-::google::protobuf::uint8* NewStoreConnectResult::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:pamrac.NewStoreConnectResult)
-  // required bool success = 1;
-  if (has_success()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(1, this->success(), target);
-  }
-
-  if (!unknown_fields().empty()) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        unknown_fields(), target);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:pamrac.NewStoreConnectResult)
-  return target;
-}
-
-int NewStoreConnectResult::ByteSize() const {
-  int total_size = 0;
-
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required bool success = 1;
-    if (has_success()) {
-      total_size += 1 + 1;
-    }
-
-  }
-  if (!unknown_fields().empty()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        unknown_fields());
-  }
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-  return total_size;
-}
-
-void NewStoreConnectResult::MergeFrom(const ::google::protobuf::Message& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  const NewStoreConnectResult* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const NewStoreConnectResult*>(
-      &from);
-  if (source == NULL) {
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-    MergeFrom(*source);
-  }
-}
-
-void NewStoreConnectResult::MergeFrom(const NewStoreConnectResult& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from.has_success()) {
-      set_success(from.success());
-    }
-  }
-  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
-}
-
-void NewStoreConnectResult::CopyFrom(const ::google::protobuf::Message& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void NewStoreConnectResult::CopyFrom(const NewStoreConnectResult& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool NewStoreConnectResult::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
-
-  return true;
-}
-
-void NewStoreConnectResult::Swap(NewStoreConnectResult* other) {
-  if (other != this) {
-    std::swap(success_, other->success_);
-    std::swap(_has_bits_[0], other->_has_bits_[0]);
-    _unknown_fields_.Swap(&other->_unknown_fields_);
-    std::swap(_cached_size_, other->_cached_size_);
-  }
-}
-
-::google::protobuf::Metadata NewStoreConnectResult::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = NewStoreConnectResult_descriptor_;
-  metadata.reflection = NewStoreConnectResult_reflection_;
-  return metadata;
-}
-
-
-// ===================================================================
-
-#ifndef _MSC_VER
-const int ConnectFriendServerResult::kUserPublicKeyFieldNumber;
-const int ConnectFriendServerResult::kServerCertFieldNumber;
-const int ConnectFriendServerResult::kSigOfCertFieldNumber;
-#endif  // !_MSC_VER
-
-ConnectFriendServerResult::ConnectFriendServerResult()
-  : ::google::protobuf::Message() {
-  SharedCtor();
-  // @@protoc_insertion_point(constructor:pamrac.ConnectFriendServerResult)
-}
-
-void ConnectFriendServerResult::InitAsDefaultInstance() {
-}
-
-ConnectFriendServerResult::ConnectFriendServerResult(const ConnectFriendServerResult& from)
-  : ::google::protobuf::Message() {
-  SharedCtor();
-  MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:pamrac.ConnectFriendServerResult)
-}
-
-void ConnectFriendServerResult::SharedCtor() {
-  ::google::protobuf::internal::GetEmptyString();
-  _cached_size_ = 0;
-  user_public_key_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  server_cert_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  sig_of_cert_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-}
-
-ConnectFriendServerResult::~ConnectFriendServerResult() {
-  // @@protoc_insertion_point(destructor:pamrac.ConnectFriendServerResult)
-  SharedDtor();
-}
-
-void ConnectFriendServerResult::SharedDtor() {
-  if (user_public_key_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete user_public_key_;
-  }
-  if (server_cert_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete server_cert_;
-  }
-  if (sig_of_cert_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete sig_of_cert_;
-  }
-  if (this != default_instance_) {
-  }
-}
-
-void ConnectFriendServerResult::SetCachedSize(int size) const {
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-}
-const ::google::protobuf::Descriptor* ConnectFriendServerResult::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return ConnectFriendServerResult_descriptor_;
-}
-
-const ConnectFriendServerResult& ConnectFriendServerResult::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_pamrac_2eproto();
-  return *default_instance_;
-}
-
-ConnectFriendServerResult* ConnectFriendServerResult::default_instance_ = NULL;
-
-ConnectFriendServerResult* ConnectFriendServerResult::New() const {
-  return new ConnectFriendServerResult;
-}
-
-void ConnectFriendServerResult::Clear() {
-  if (_has_bits_[0 / 32] & 7) {
-    if (has_user_public_key()) {
-      if (user_public_key_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-        user_public_key_->clear();
-      }
-    }
-    if (has_server_cert()) {
-      if (server_cert_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-        server_cert_->clear();
-      }
-    }
-    if (has_sig_of_cert()) {
-      if (sig_of_cert_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-        sig_of_cert_->clear();
-      }
-    }
-  }
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-  mutable_unknown_fields()->Clear();
-}
-
-bool ConnectFriendServerResult::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:pamrac.ConnectFriendServerResult)
-  for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required bytes user_public_key = 1;
-      case 1: {
-        if (tag == 10) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_user_public_key()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(18)) goto parse_server_cert;
-        break;
-      }
-
-      // required bytes server_cert = 2;
-      case 2: {
-        if (tag == 18) {
-         parse_server_cert:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_server_cert()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(26)) goto parse_sig_of_cert;
-        break;
-      }
-
-      // required bytes sig_of_cert = 3;
-      case 3: {
-        if (tag == 26) {
-         parse_sig_of_cert:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_sig_of_cert()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectAtEnd()) goto success;
-        break;
-      }
-
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-success:
-  // @@protoc_insertion_point(parse_success:pamrac.ConnectFriendServerResult)
-  return true;
-failure:
-  // @@protoc_insertion_point(parse_failure:pamrac.ConnectFriendServerResult)
-  return false;
-#undef DO_
-}
-
-void ConnectFriendServerResult::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:pamrac.ConnectFriendServerResult)
-  // required bytes user_public_key = 1;
-  if (has_user_public_key()) {
-    ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
-      1, this->user_public_key(), output);
-  }
-
-  // required bytes server_cert = 2;
-  if (has_server_cert()) {
-    ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
-      2, this->server_cert(), output);
-  }
-
-  // required bytes sig_of_cert = 3;
-  if (has_sig_of_cert()) {
-    ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
-      3, this->sig_of_cert(), output);
-  }
-
-  if (!unknown_fields().empty()) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        unknown_fields(), output);
-  }
-  // @@protoc_insertion_point(serialize_end:pamrac.ConnectFriendServerResult)
-}
-
-::google::protobuf::uint8* ConnectFriendServerResult::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:pamrac.ConnectFriendServerResult)
-  // required bytes user_public_key = 1;
-  if (has_user_public_key()) {
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        1, this->user_public_key(), target);
-  }
-
-  // required bytes server_cert = 2;
-  if (has_server_cert()) {
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        2, this->server_cert(), target);
-  }
-
-  // required bytes sig_of_cert = 3;
-  if (has_sig_of_cert()) {
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        3, this->sig_of_cert(), target);
-  }
-
-  if (!unknown_fields().empty()) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        unknown_fields(), target);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:pamrac.ConnectFriendServerResult)
-  return target;
-}
-
-int ConnectFriendServerResult::ByteSize() const {
-  int total_size = 0;
-
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required bytes user_public_key = 1;
-    if (has_user_public_key()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::BytesSize(
-          this->user_public_key());
-    }
-
-    // required bytes server_cert = 2;
-    if (has_server_cert()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::BytesSize(
-          this->server_cert());
-    }
-
-    // required bytes sig_of_cert = 3;
-    if (has_sig_of_cert()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::BytesSize(
-          this->sig_of_cert());
-    }
-
-  }
-  if (!unknown_fields().empty()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        unknown_fields());
-  }
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-  return total_size;
-}
-
-void ConnectFriendServerResult::MergeFrom(const ::google::protobuf::Message& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  const ConnectFriendServerResult* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const ConnectFriendServerResult*>(
-      &from);
-  if (source == NULL) {
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-    MergeFrom(*source);
-  }
-}
-
-void ConnectFriendServerResult::MergeFrom(const ConnectFriendServerResult& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from.has_user_public_key()) {
-      set_user_public_key(from.user_public_key());
-    }
-    if (from.has_server_cert()) {
-      set_server_cert(from.server_cert());
-    }
-    if (from.has_sig_of_cert()) {
-      set_sig_of_cert(from.sig_of_cert());
-    }
-  }
-  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
-}
-
-void ConnectFriendServerResult::CopyFrom(const ::google::protobuf::Message& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void ConnectFriendServerResult::CopyFrom(const ConnectFriendServerResult& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool ConnectFriendServerResult::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000007) != 0x00000007) return false;
-
-  return true;
-}
-
-void ConnectFriendServerResult::Swap(ConnectFriendServerResult* other) {
-  if (other != this) {
-    std::swap(user_public_key_, other->user_public_key_);
-    std::swap(server_cert_, other->server_cert_);
-    std::swap(sig_of_cert_, other->sig_of_cert_);
-    std::swap(_has_bits_[0], other->_has_bits_[0]);
-    _unknown_fields_.Swap(&other->_unknown_fields_);
-    std::swap(_cached_size_, other->_cached_size_);
-  }
-}
-
-::google::protobuf::Metadata ConnectFriendServerResult::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = ConnectFriendServerResult_descriptor_;
-  metadata.reflection = ConnectFriendServerResult_reflection_;
   return metadata;
 }
 

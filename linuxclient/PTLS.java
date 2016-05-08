@@ -13,9 +13,19 @@ public class PTLS
 	
 	public static SSLSocket connectTLS(String serverAddr, byte[] serverCert) throws Exception
 	{
-		String serverHost = serverAddr.substring(0, serverAddr.indexOf(":"));
-		String serverPortStr = serverAddr.substring(serverAddr.indexOf(":")+1);
-		int serverPort = Integer.parseInt(serverPortStr);
+		String serverHost;
+		int serverPort;
+		if(serverAddr.indexOf(":") >= 0)
+		{
+			serverHost = serverAddr.substring(0, serverAddr.indexOf(":"));
+			String serverPortStr = serverAddr.substring(serverAddr.indexOf(":")+1);
+			serverPort = Integer.parseInt(serverPortStr);
+		}
+		else
+		{
+			serverPort = 443;
+			serverHost = serverAddr;
+		}
 
 		// Create an SSLContext that uses our TrustManager (if applicable)
 		SSLContext context = SSLContext.getInstance("TLS");

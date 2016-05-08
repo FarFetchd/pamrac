@@ -125,7 +125,7 @@ void acceptConnections(uint16_t listen_port)
 }
 
 
-int main()
+int main(int argc, char** argv)
 {
 	//Load settings: base dir location, listen_port
 	std::string listen_port_str;
@@ -144,7 +144,8 @@ int main()
 	if(access(CERT_FILE_PATH, R_OK) != 0)
 		exitError("Server's cert file ("+std::string(CERT_FILE_PATH)+") is missing.");
 	
-	daemonize();
+	if(argc > 1 && !strcmp(argv[1], "daemon"))
+		daemonize();
 	
 	/*TODO struct sigaction siggy;
 	memset(&siggy, 0, sizeof(struct sigaction));
